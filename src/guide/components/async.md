@@ -2,7 +2,7 @@
 
 ## Asosiy foydalanish
 
-Katta ilovalarda ilovani kichikroq qismlarga ajratishimiz va serverdan komponentni faqat kerak bo'lganda yuklashimiz kerak bo'lishi mumkin. Buni amalga oshirish uchun Vue [`defineAsyncComponent`](/api/general.html#defineasynccomponent) funktsiyasi mavjud:
+Katta ilovalarda ilovani kichikroq qismlarga ajratishimiz va serverdan komponentni faqat kerak bo'lganda yuklashimiz kerak bo'lishi mumkin. Buni amalga oshirish uchun Vue [`defineAsyncComponent`](/api/general.html#defineasynccomponent) funksiyasi mavjud:
 ```js
 import { defineAsyncComponent } from 'vue'
 
@@ -15,9 +15,9 @@ const AsyncComp = defineAsyncComponent(() => {
 // ... `AsyncComp` dan oddiy komponent kabi foydalaning
 ```
 
-Ko'rib turganingizdek, `defineAsyncComponent` va'dani qaytaradigan yuklash funktsiyasini qabul qiladi. Komponent taʼrifini serverdan olganingizdan soʻng, `Promise` ning `resolve` qayta qoʻngʻiroqlari chaqirilishi kerak. Shuningdek , yuklamaning bajarilmaganligini bildirish uchun `reject(reason)` ga qo'ng'iroq qilishingiz mumkin .
+Ko'rib turganingizdek, `defineAsyncComponent` Promise qaytaradigan yuklash funksiyasini qabul qiladi. Komponent taʼrifini serverdan olganingizdan soʻng, `Promise` ning `resolve` qayta qoʻngʻiroqlari chaqirilishi kerak. Shuningdek , yuklamaning bajarilmaganligini bildirish uchun `reject(reason)` ga qo'ng'iroq qilishingiz mumkin .
 
-[ES modulining dinamik importi](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) ham va'dani (`Promise`) qaytaradi, shuning uchun ko'pincha biz uni `defineAsyncComponent` bilan birgalikda ishlatamiz . Vite va webpack kabi paketlar ham sintaksisni qo'llab-quvvatlaydi, shuning uchun biz Vue SFC-larini import qilish uchun foydalanishimiz mumkin:
+[ES modulining dinamik importi](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) ham `Promise` qaytaradi, shuning uchun ko'pincha biz uni `defineAsyncComponent` bilan birgalikda ishlatamiz . Vite va webpack kabi paketlar ham sintaksisni qo'llab-quvvatlaydi, shuning uchun biz Vue SFC-larini import qilish uchun foydalanishimiz mumkin:
 
 ```js
 import { defineAsyncComponent } from 'vue'
@@ -48,7 +48,7 @@ export default {
 
 </div>
 
-## Yuklash va Xato holatlari
+## Yuklash va xato holatlari
 
 Asynchronous operations inevitably involve loading and error states - `defineAsyncComponent()` supports handling these states via advanced options:
 
