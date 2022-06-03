@@ -368,6 +368,7 @@ Odatda propni mutatsiyaga olib keladigan ikkita holat mavjud:
 Obyektlar va massivlar prop sifatida uzatilsa, bola komponent prop bog'lanishini o'zgartira olmasa, u obyekt yoki massivning ichki xususiyatlarini mutatsiyalashi **mumkin bo'ladi** . Buning sababi, JavaScript-da obyektlar va massivlar havola orqali uzatiladi va bunday mutatsiyalarning oldini olish Vue uchun asossiz qimmatga tushadi.
 
 Bunday mutatsiyalarning asosiy kamchiligi shundaki, u bola komponentiga ota-ona holatiga ota-ona komponentiga aniq bo'lmagan tarzda ta'sir qilish imkonini beradi, bu esa kelajakda ma'lumotlar oqimi haqida fikr yuritishni qiyinlashtiradi. Eng yaxshi amaliyot sifatida, agar ota-ona va bola dizayn bilan mahkam bog'lanmagan bo'lsa, bunday mutatsiyalardan qochishingiz kerak. Ko'pgina hollarda, bola ota-onaga mutatsiyani amalga oshirishga imkon beradigan [hodisani chiqarishi](/guide/components/events.html) kerak.
+
 ## Propni Tasdiqlsh/Tekshiruvlar
 
 Komponentlar o'z proplari uchun talablarni belgilashi mumkin, masalan, siz allaqachon ko'rgan turlar. Agar talab bajarilmasa, Vue sizni brauzerning JavaScript konsolida ogohlantiradi. Bu, ayniqsa, boshqalar tomonidan foydalanish uchun mo'ljallangan komponentni ishlab chiqishda foydalidir.
