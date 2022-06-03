@@ -11,7 +11,7 @@ Vue komponentlari aniq prop deklaratsiyasini talab qiladi, shuning uchun Vue kom
 
 <div class="composition-api">
 
-`<script setup>` qollanilgan SFC larda props, `defineProps()` makrosi yordamida e'lon qilishi mumkin:
+`<script setup>` qo'llanilgan SFC larda props, `defineProps()` makrosi yordamida e'lon qilish mumkin:
 
 ```vue
 <script setup>
@@ -33,7 +33,7 @@ export default {
 }
 ```
 
-Eslatma: `defineProps()` ga uzatilgan argument `prop` opsiyalari uchun berilgan qiymat bir xil bolishiga e'tibor bering: 
+Eslatma: `defineProps()` ga uzatilgan argument `prop` opsiyalari uchun berilgan qiymat bir xil bo'lishiga e'tibor bering: 
 bir xil `prop` options API ikki deklaratsiya uslubi o'rtasida taqsimlanadi.
 
 </div>
@@ -54,7 +54,7 @@ export default {
 
 </div>
 
-Satrlar qatori yordamida proplarni e'lon qilishdan tashqari, biz ob'ekt sintaksisidan ham foydalanishimiz mumkin:
+Satrlar qatori yordamida proplarni e'lon qilishdan tashqari, biz obyekt sintaksisidan ham foydalanishimiz mumkin:
 
 <div class="options-api">
 
@@ -90,9 +90,9 @@ export default {
 
 </div>
 
-Ob'ekt deklaratsiyasi sintaksisidagi har bir xususiyat uchun kalit prop nomi, qiymat esa kutilgan turdagi konstruktor funksiyasi bo'lishi kerak.
+Obyekt deklaratsiyasi sintaksisidagi har bir xususiyat uchun kalit prop nomi, qiymat esa kutilgan turdagi konstruktor funksiyasi bo'lishi kerak.
 
-Bu nafaqat komponentingizni hujjatlashtiribgina qolmay, balki brauzer konsolida komponentingizdan foydalanayotgan boshqa ishlab chiquvchilarni, agar ular noto'g'ri turdan o'tgan bo'lsa, ogohlantiradi. [prop validation](#prop-validation) haqida batafsil maʼlumotlarni ushbu sahifada muhokama qilamiz.
+Bu nafaqat komponentingizni hujjatlashtiribgina qolmay, balki brauzer konsolida komponentingizdan foydalanayotgan boshqa dasturchilarni, agar ular noto'g'ri turdan o'tgan bo'lsa, ogohlantiradi. [prop validation](#prop-validation) haqida batafsil maʼlumotlarni ushbu sahifada muhokama qilamiz.
 
 <div class="options-api">
 
@@ -190,7 +190,7 @@ Yuqoridagi ikkita misolda biz satr qiymatlarini o'tkazamiz, lekin _har qanday_ t
 <BlogPost :likes="post.likes" />
 ```
 
-#### Mantiqiy
+#### Boolean
 
 ```vue-html
 <!-- Hech qanday qiymatga ega bo'lmagan propni qo'shish `true`(togri) degan ma'noni anglatadi. -->
@@ -218,7 +218,7 @@ Yuqoridagi ikkita misolda biz satr qiymatlarini o'tkazamiz, lekin _har qanday_ t
 #### Obyekt
 
 ```vue-html
-<!-- Ob'ekt statik bo'lsa ham, Vue-ga buni --> aytish uchun bizga v-bind kerak
+<!-- Obyekt statik bo'lsa ham, Vue-ga buni --> aytish uchun bizga v-bind kerak
 <!-- bu satr emas, balki JavaScript ifodasidir. -->
 <BlogPost
   :author="{
@@ -231,9 +231,9 @@ Yuqoridagi ikkita misolda biz satr qiymatlarini o'tkazamiz, lekin _har qanday_ t
 <BlogPost :author="post.author" />
 ```
 
-### Ob'ekt yordamida bir nechta xususiyatlarni bog'lash
+### Obyekt yordamida bir nechta xususiyatlarni bog'lash
 
-Agar ob'ektning barcha xususiyatlarini prop sifatida o'tkazmoqchi bo'lsangiz [`v-bind` argumentsiz](/guide/essentials/template-syntax.html#dynamically-binding-multiple-attributes) ( `v-bind` o'rniga `:prop-name`) foydalanishingiz mumkin. Masalan, post ob'ekt berilgan:
+Agar obyektning barcha xususiyatlarini prop sifatida o'tkazmoqchi bo'lsangiz [`v-bind` argumentsiz](/guide/essentials/template-syntax.html#dynamically-binding-multiple-attributes) ( `v-bind` o'rniga `:prop-name`) foydalanishingiz mumkin. Masalan, post obyekt berilgan:
 
 <div class="options-api">
 
@@ -363,9 +363,9 @@ Bunday holda, propni boshlang'ich qiymati sifatida ishlatadigan mahalliy ma'lumo
 
    </div>
 
-### O'zgaruvchan ob'ekt / massiv proplari
+### O'zgaruvchan obyekt / massiv proplari
 
-Ob'ektlar va massivlar prop sifatida uzatilsa, bola komponent prop bog'lanishini o'zgartira olmasa, u ob'ekt yoki massivning ichki xususiyatlarini mutatsiyalashi **mumkin bo'ladi** . Buning sababi, JavaScript-da ob'ektlar va massivlar havola orqali uzatiladi va bunday mutatsiyalarning oldini olish Vue uchun asossiz qimmatga tushadi.
+Obyektlar va massivlar prop sifatida uzatilsa, bola komponent prop bog'lanishini o'zgartira olmasa, u obyekt yoki massivning ichki xususiyatlarini mutatsiyalashi **mumkin bo'ladi** . Buning sababi, JavaScript-da obyektlar va massivlar havola orqali uzatiladi va bunday mutatsiyalarning oldini olish Vue uchun asossiz qimmatga tushadi.
 
 Bunday mutatsiyalarning asosiy kamchiligi shundaki, u bola komponentiga ota-ona holatiga ota-ona komponentiga aniq bo'lmagan tarzda ta'sir qilish imkonini beradi, bu esa kelajakda ma'lumotlar oqimi haqida fikr yuritishni qiyinlashtiradi. Eng yaxshi amaliyot sifatida, agar ota-ona va bola dizayn bilan mahkam bog'lanmagan bo'lsa, bunday mutatsiyalardan qochishingiz kerak. Ko'pgina hollarda, bola ota-onaga mutatsiyani amalga oshirishga imkon beradigan [hodisani chiqarishi](/guide/components/events.html) kerak.
 ## Propni Tasdiqlsh/Tekshiruvlar
@@ -379,7 +379,7 @@ Prop tekshiruvlarni belgilash(miqdorini aniqlash) uchun, siz stringlardan tashki
 ```js
 defineProps({
   // Asosiy turdagi tekshirish
-  //  (`null` va `andefined` qiymatlar har qanday turga ruxsat beradi)
+  //  (`null` va `undefined` qiymatlar har qanday turga ruxsat beradi)
   propA: Number,
   // Bir nechta mumkin bo'lgan turlar
   propB: [String, Number],
@@ -393,10 +393,10 @@ defineProps({
     type: Number,
     default: 100
   },
-  // Standart qiymatga ega ob'ekt
+  // Standart qiymatga ega obyekt
   propE: {
     type: Object,
-    // Ob'ekt yoki massivning standart qiymatlari dan qaytarilishi kerak
+    // Obyekt yoki massivning standart qiymatlari dan qaytarilishi kerak
     // zavod funktsiyasi. Funktsiya xom ashyoni oladi
     // komponent tomonidan argument sifatida qabul qilingan proplar.
     default(rawProps) {
@@ -413,7 +413,7 @@ defineProps({
   // Standart qiymatga ega funksiya
   propG: {
     type: Function,
-    // Ob'ekt yoki massivning sukut bo'yicha farqli o'laroq, bu zavod funksiyasi emas - bu standart qiymat sifatida xizmat qiladigan funksiya
+    // Obyekt yoki massivning sukut bo'yicha farqli o'laroq, bu komponent funksiyasi emas - bu standart qiymat sifatida xizmat qiladigan funksiya
     default() {
       return 'Default function'
     }
@@ -432,7 +432,7 @@ defineProps({
 export default {
   props: {
     // Asosiy turdagi tekshirish
-    //  (`null` va `andefined` qiymatlar har qanday turga ruxsat beradi)
+    //  (`null` va `undefined` qiymatlar har qanday turga ruxsat beradi)
     propA: Number,
     // Bir nechta mumkin bo'lgan turlar
     propB: [String, Number],
@@ -446,10 +446,10 @@ export default {
       type: Number,
       default: 100
     },
-    // Standart qiymatga ega ob'ekt
+    // Standart qiymatga ega obyekt
     propE: {
       type: Object,
-      // Ob'ekt yoki massivning standart qiymatlari dan qaytarilishi kerak
+      // Obyekt yoki massivning standart qiymatlari dan qaytarilishi kerak
       // zavod funktsiyasi. Funktsiya xom ashyoni oladi
       // komponent tomonidan argument sifatida qabul qilingan proplar.
       default(rawProps) {
@@ -466,7 +466,7 @@ export default {
     // Standart qiymatge ega funksiya
     propG: {
       type: Function,
-      // Ob'ekt yoki massivning sukut bo'yicha farqli o'laroq, bu zavod funksiyasi emas - bu standart qiymat sifatida xizmat qiladigan funksiya
+      // Obyekt yoki massivning sukut bo'yicha farqli o'laroq, bu komponent funksiyasi emas - bu standart qiymat sifatida xizmat qiladigan funksiya
       default() {
         return 'Default function'
       }
@@ -554,7 +554,7 @@ export default {
 
 ## Boolean Casting
 
-`Boolean` turidagi proplarda mahalliy mantiqiy atributlarning xatti-harakatlariga taqlid qilish uchun maxsus kasting qoidalari mavjud. Quyidagi deklaratsiyaga ega `<MyComponent>` berilgan:
+`Boolean` turidagi proplarda mahalliy boolean atributlarning xatti-harakatlariga taqlid qilish uchun maxsus kasting qoidalari mavjud. Quyidagi deklaratsiyaga ega `<MyComponent>` berilgan:
 
 <div class="composition-api">
 
