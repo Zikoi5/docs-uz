@@ -17,7 +17,7 @@ const AsyncComp = defineAsyncComponent(() => {
 
 Ko'rib turganingizdek, `defineAsyncComponent` Promise qaytaradigan yuklash funksiyasini qabul qiladi. Komponent taʼrifini serverdan olganingizdan soʻng, `Promise` ning `resolve` qayta qoʻngʻiroqlari chaqirilishi kerak. Shuningdek , yuklamaning bajarilmaganligini bildirish uchun `reject(reason)` ga qo'ng'iroq qilishingiz mumkin .
 
-[ES modulining dinamik importi](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) ham `Promise` qaytaradi, shuning uchun ko'pincha biz uni `defineAsyncComponent` bilan birgalikda ishlatamiz . Vite va webpack kabi paketlar ham sintaksisni qo'llab-quvvatlaydi, shuning uchun biz Vue SFC-larini import qilish uchun foydalanishimiz mumkin:
+[ES modulining dinamik importi](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) ham `Promise` qaytaradi, shuning uchun ko'pincha biz uni `defineAsyncComponent` bilan birgalikda ishlatamiz . Vite va webpack kabi bundler'lar ham sintaksisni qo'llab-quvvatlaydi, shuning uchun biz Vue SFC-larini import qilish uchun foydalanishimiz mumkin:
 
 ```js
 import { defineAsyncComponent } from 'vue'
@@ -72,7 +72,7 @@ const AsyncComp = defineAsyncComponent({
 
 Agar yuklash komponenti taqdim etilgan bo'lsa, u birinchi navbatda ichki komponent yuklanayotganda ko'rsatiladi. Yuklash komponenti ko'rsatilishidan oldin sukut bo'yicha 200 ms kechikish mavjud - bu tezkor tarmoqlarda tezkor yuklanish holati juda tez o'zgarishi va miltillash kabi ko'rinishi mumkin.
 
-Agar xato komponenti taqdim etilsa, u yuklovchi funksiyasi tomonidan qaytarilgan va'da rad etilganda ko'rsatiladi. Shuningdek, so'rov juda uzoq davom etsa, xato komponentini ko'rsatish uchun kutish vaqtini belgilashingiz mumkin.
+Agar xato komponenti taqdim etilsa, u yuklovchi funksiyasi tomonidan qaytarilgan Promise rad etilganda ko'rsatiladi. Shuningdek, so'rov juda uzoq davom etsa, xato komponentini ko'rsatish uchun kutish vaqtini belgilashingiz mumkin.
 
 ## Suspense bilan foydalanish
 
