@@ -96,7 +96,7 @@ Bu nafaqat komponentingizni hujjatlashtiribgina qolmay, balki brauzer konsolida 
 
 <div class="options-api">
 
-See also: [Typing Component Props](/guide/typescript/options-api.html#typing-component-props)
+Shuningdek: [Komponent proplarini yozish](/guide/typescript/options-api.html#typing-component-props) ga qarang
 <sup class="vt-badge ts" />
 
 </div>
@@ -193,7 +193,7 @@ Yuqoridagi ikkita misolda biz satr qiymatlarini o'tkazamiz, lekin _har qanday_ t
 #### Boolean
 
 ```vue-html
-<!-- Hech qanday qiymatga ega bo'lmagan propni qo'shish `true`(to'gri) degan ma'noni anglatadi. -->
+<!-- Hech qanday qiymatga ega bo'lmagan propni qo'shish `true`(to'g'ri) degan ma'noni anglatadi. -->
 <BlogPost is-published />
 
 <!-- Garchi `false` (yolg'on) statik bo'lsa ham, Vue-ga buni aytish uchun `v-bind` kerak -->
