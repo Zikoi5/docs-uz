@@ -1,13 +1,13 @@
 # Template Refs
 
-Vue ning deklarativ renderlash modeli(template sintaksisi( `{}` ) orqali ma'lumotlarni DOMga chiqarish) siz uchun DOM ning to'g'ridan-to'g'ri bajariladigan ko'p operatsiyalarini (Masalan, `document.querySelector()`) qisqartirib bergan bo'lsa-da, DOM ning asosiy elementlariga to'g'ridan-to'g'ri bog'lanish zarur bo'lgan holatlar bo'lishi mumkin. Bunga erishish uchun, biz maxsus `ref` atributidan foydalanamiz:
+Vue ning deklarativ renderlash modeli (template sintaksisi ( `{}` ) orqali ma'lumotlarni DOMga chiqarish) siz uchun DOM ning to'g'ridan-to'g'ri bajariladigan ko'p operatsiyalarini (Masalan, `document.querySelector()`) qisqartirib bergan bo'lsa-da, DOM ning asosiy elementlariga to'g'ridan-to'g'ri bog'lanish zarur bo'lgan holatlar bo'lishi mumkin. Bunga erishish uchun, biz maxsus `ref` atributidan foydalanamiz:
 
 
 ```vue-html
 <input ref="input">
 ```
 
-`ref` - `key` atributiga o'xshagan maxsus atribut bo'lib, bu `v-for` bo'limida muhokama qilingan. Bu bizga DOM ning xos elementi yoki bola komponent namunasi(instance) `mounted` bo'lgandan keyin, to'g'ridan-to'g'ri aloqa yaratish imkonini beradi. Misol uchun, siz component `mount` bo'lganda `input` bilan bog'lanishni xohlasangiz yoki elementda yordamchi kutubxonani ishga tushirganingizda foydali bo'lishi mumkin.
+`ref` - `key` atributiga o'xshagan maxsus atribut bo'lib, bu `v-for` bo'limida muhokama qilingan. Bu bizga DOM ning xos elementi yoki bola komponent namunasi (instance) `mounted` bo'lgandan keyin, to'g'ridan-to'g'ri aloqa yaratish imkonini beradi. Misol uchun, siz component `mount` bo'lganda `input` bilan bog'lanishni xohlasangiz yoki elementda yordamchi kutubxonani ishga tushirganingizda foydali bo'lishi mumkin.
 
 ## Ref dan foydalanish
 
