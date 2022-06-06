@@ -33,7 +33,7 @@ export default {
 }
 ```
 
-Eslatma: `defineProps()` ga uzatilgan argument `prop` opsiyalari uchun berilgan qiymat bir xil bo'lishiga e'tibor bering: 
+Eslatma: `defineProps()` ga uzatilgan argument `prop` opsiyalari uchun berilgan qiymat bir xil bo'lishiga e'tibor bering:
 bir xil `prop` options API ikki deklaratsiya uslubi o'rtasida taqsimlanadi.
 
 </div>
@@ -96,7 +96,7 @@ Bu nafaqat komponentingizni hujjatlashtiribgina qolmay, balki brauzer konsolida 
 
 <div class="options-api">
 
-See also: [Typing Component Props](/guide/typescript/options-api.html#typing-component-props) 
+Shuningdek: [Komponent proplarini yozish](/guide/typescript/options-api.html#typing-component-props) ga qarang
 <sup class="vt-badge ts" />
 
 </div>
@@ -193,7 +193,7 @@ Yuqoridagi ikkita misolda biz satr qiymatlarini o'tkazamiz, lekin _har qanday_ t
 #### Boolean
 
 ```vue-html
-<!-- Hech qanday qiymatga ega bo'lmagan propni qo'shish `true`(togri) degan ma'noni anglatadi. -->
+<!-- Hech qanday qiymatga ega bo'lmagan propni qo'shish `true`(to'g'ri) degan ma'noni anglatadi. -->
 <BlogPost is-published />
 
 <!-- Garchi `false` (yolg'on) statik bo'lsa ham, Vue-ga buni aytish uchun `v-bind` kerak -->
@@ -306,8 +306,8 @@ export default {
 
 Odatda propni mutatsiyaga olib keladigan ikkita holat mavjud:
 
-1. **Prop boshlang'ich qiymatni o'tkazish uchun ishlatiladi; bola komponenti undan keyin mahalliy ma'lumotlar xususiyati sifatida foydalanishni xohlaydi.** 
-Bunday holda, propni boshlang'ich qiymati sifatida ishlatadigan mahalliy ma'lumotlar xususiyatini aniqlash yaxshidir:
+1. **Prop boshlang'ich qiymatni o'tkazish uchun ishlatiladi; bola komponenti undan keyin mahalliy ma'lumotlar xususiyati sifatida foydalanishni xohlaydi.**
+   Bunday holda, propni boshlang'ich qiymati sifatida ishlatadigan mahalliy ma'lumotlar xususiyatini aniqlash yaxshidir:
 
 <div class="composition-api">
 
@@ -368,6 +368,7 @@ Bunday holda, propni boshlang'ich qiymati sifatida ishlatadigan mahalliy ma'lumo
 Obyektlar va massivlar prop sifatida uzatilsa, bola komponent prop bog'lanishini o'zgartira olmasa, u obyekt yoki massivning ichki xususiyatlarini mutatsiyalashi **mumkin bo'ladi** . Buning sababi, JavaScript-da obyektlar va massivlar havola orqali uzatiladi va bunday mutatsiyalarning oldini olish Vue uchun asossiz qimmatga tushadi.
 
 Bunday mutatsiyalarning asosiy kamchiligi shundaki, u bola komponentiga ota-ona holatiga ota-ona komponentiga aniq bo'lmagan tarzda ta'sir qilish imkonini beradi, bu esa kelajakda ma'lumotlar oqimi haqida fikr yuritishni qiyinlashtiradi. Eng yaxshi amaliyot sifatida, agar ota-ona va bola dizayn bilan mahkam bog'lanmagan bo'lsa, bunday mutatsiyalardan qochishingiz kerak. Ko'pgina hollarda, bola ota-onaga mutatsiyani amalga oshirishga imkon beradigan [hodisani chiqarishi](/guide/components/events.html) kerak.
+
 ## Propni Tasdiqlsh/Tekshiruvlar
 
 Komponentlar o'z proplari uchun talablarni belgilashi mumkin, masalan, siz allaqachon ko'rgan turlar. Agar talab bajarilmasa, Vue sizni brauzerning JavaScript konsolida ogohlantiradi. Bu, ayniqsa, boshqalar tomonidan foydalanish uchun mo'ljallangan komponentni ishlab chiqishda foydalidir.
@@ -480,15 +481,15 @@ export default {
 Qo'shimcha tafsilotlar:
 
 
-- Barcha proplar sukut boʻyicha ixtiyoriy, agar `required: true` belgilanmagan boʻlsa.
+- Barcha proplar ixtiyoriy, agar `required: true` belgilanmagan boʻlsa.
 
-- `Boolean` dan boshqa mavjud boʻlmagan ixtiyoriy prop `undefined` qiymatga ega boʻladi. 
-  
+- `Boolean` dan boshqa mavjud boʻlmagan ixtiyoriy prop `undefined` qiymatga ega boʻladi.
+
 - `Boolean` mavjud bo'lmagan proplar `false` ga o'tkaziladi. Istalgan xatti-harakatni olish uchun siz unga `default` qiymatni o'rnatishingiz kerak.
 
 - Agar `default` qiymat belgilangan boʻlsa, u hal qilingan asos qiymati `undefined` boʻlsa, foydalaniladi – bu prop yoʻq boʻlganda yoki aniq `undefined` qiymat uzatilganda ham kiradi.
 
-Prop tekshiruvi muvaffaqiyatsiz tugagach, Vue konsol ogohlantirishini chiqaradi (agar ishlanma tuzilmasi ishlatilsa).
+Prop tekshiruvi muvaffaqiyatsiz tugagach, Vue konsol ogohlantirishini chiqaradi (developer rejimida).
 
 <div class="composition-api">
 
