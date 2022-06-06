@@ -1,6 +1,6 @@
 # Template Refs
 
-Vue ning deklarativ renderlash modeli(template sintaksisi( `{}` ) orqali ma'lumotlarni DOMga chiqarish) siz uchun DOM ning to'g'ridan-to'g'ri bajariladigan ko'p operatsiyalarini(Masalan, `document.querySelector()`) qisqartirib bergan bo'lsa-da, DOM 
+Vue ning deklarativ renderlash modeli(template sintaksisi( `{}` ) orqali ma'lumotlarni DOMga chiqarish) siz uchun DOM ning to'g'ridan-to'g'ri bajariladigan ko'p operatsiyalarini (Masalan, `document.querySelector()`) qisqartirib bergan bo'lsa-da, DOM ning asosiy elementlariga to'g'ridan-to'g'ri bog'lanish zarur bo'lgan holatlar bo'lishi mumkin. Bunga erishish uchun, biz maxsus `ref` atributidan foydalanamiz:
 
 
 ```vue-html
@@ -13,7 +13,7 @@ Vue ning deklarativ renderlash modeli(template sintaksisi( `{}` ) orqali ma'lumo
 
 <div class="composition-api">
 
-Composition API bilan aloqa yaratish uchun, biz `ref` xuddi shu nom bilan e'lon qilishimiz kerak:
+Composition API bilan aloqa yaratish uchun, biz `ref` ni xuddi shu nom bilan e'lon qilishimiz kerak:
 ```vue
 <script setup>
 import { ref, onMounted } from 'vue'
@@ -33,7 +33,7 @@ onMounted(() => {
 </template>
 ```
 
-Agar siz `<script setup>`dan foydalanmayotgan bo'lsangiz, `setup()` funksiyasidan `ref` ni qaytarayotganingiz(return qilayotganingiz)ga e'tibor bering:
+Agar siz `<script setup>`dan foydalanmayotgan bo'lsangiz, `setup()` funksiyasidan `ref` ni qaytarayotganingiz (return qilayotganingiz)ga e'tibor bering:
 
 ```js{6}
 export default {
@@ -72,8 +72,8 @@ Buning sababi element birinchi renderdan keyin mavjud emas!
 
 <div class="composition-api">
 
-If you are trying to watch the changes of a template ref, refning qiymati `null` bo'lgan holat uchun ta'rif berganingizga ishonch hosil qiling:
-Agar siz template refning o'zgarishlarini kuzatishga harakat qilayotgan bo'lsangiz, 
+Agar siz template refning o'zgarishlarini kuzatishga harakat qilayotgan bo'lsangiz, refning qiymati `null` bo'lgan holat uchun ta'rif berganingizga ishonch hosil qiling:
+ 
 ```js
 watchEffect(() => {
   if (input.value) {
@@ -219,7 +219,7 @@ export default {
 
 <div class="composition-api">
 
-`<script setup>` ni **tabiiy holatda shaxsiy(by default private)** qilgan holatda foydalanayotgan komponentlar uchun istisno bor: bola komponent `defineExpose` `compiler` idan foydalanib umumiy interfeysni ochishni tanlamagunicha, ota komponent `<script setup>` dan foydalanayotgan bola komponentga bog'lanayotib bola komponentning hech narsaniga kira olmaydi - foydalana olmaydi:
+`<script setup>` ni **tabiiy holatda shaxsiy(by default private)** qilgan holatda foydalanayotgan komponentlar uchun istisno bor: bola komponent `defineExpose` `compiler` idan foydalanib umumiy interfeysni ochishni tanlamagunicha, ota komponent `<script setup>` dan foydalanayotgan bola komponentga bog'lanayotib bola komponentning hech narsadan foydalana olmaydi:
 
 ```vue
 <script setup>
@@ -242,7 +242,7 @@ Buni ham ko'ring: [Typing Component Template Refs](/guide/typescript/composition
 </div>
 <div class="options-api">
 
-`expose` varianti(option)dan bola namuna bog'lanish - ulanishni cheklash uchun foydalanish mumkin:
+`expose` varianti (option)dan bola namuna bog'lanish - ulanishni cheklash uchun foydalanish mumkin:
 
 ```js
 export default {
@@ -264,6 +264,5 @@ export default {
 }
 ```
 
-Yuqoridagi misolda, a parent referencing this component via template ref will only be able to access `publicData` and `publicMethod`.
-Ota shu komponentga template ref orqali bog'lanyapti va faqatgina `publicData` hamda `publicMethod` lardan foydalana oladi.
+Yuqoridagi misolda, ota shu komponentga template ref orqali bog'lanyapti va faqatgina `publicData` hamda `publicMethod` lardan foydalana oladi.
 </div>
