@@ -1,7 +1,6 @@
-# Template Refs
+# Template Reflar
 
-Vue ning deklarativ renderlash modeli (template sintaksisi ( `{}` ) orqali ma'lumotlarni DOMga chiqarish) siz uchun DOM ning to'g'ridan-to'g'ri bajariladigan ko'p operatsiyalarini (Masalan, `document.querySelector()`) qisqartirib bergan bo'lsa-da, DOM ning asosiy elementlariga to'g'ridan-to'g'ri bog'lanish zarur bo'lgan holatlar bo'lishi mumkin. Bunga erishish uchun, biz maxsus `ref` atributidan foydalanamiz:
-
+`Vue`ning deklarativ renderlash modeli (template sintaksisi (`{}`) orqali ma'lumotlarni DOMga chiqarish) siz uchun DOM ning to'g'ridan-to'g'ri bajariladigan ko'p operatsiyalarini (Masalan, `document.querySelector()`) qisqartirib bergan bo'lsa-da, DOM ning asosiy elementlariga to'g'ridan-to'g'ri bog'lanish zarur bo'lgan holatlar bo'lishi mumkin. Bunga erishish uchun, biz maxsus `ref` atributidan foydalanamiz:
 
 ```vue-html
 <input ref="input">
@@ -9,17 +8,17 @@ Vue ning deklarativ renderlash modeli (template sintaksisi ( `{}` ) orqali ma'lu
 
 `ref` - `key` atributiga o'xshagan maxsus atribut bo'lib, bu `v-for` bo'limida muhokama qilingan. Bu bizga DOM ning xos elementi yoki bola komponent namunasi (instance) `mounted` bo'lgandan keyin, to'g'ridan-to'g'ri aloqa yaratish imkonini beradi. Misol uchun, siz component `mount` bo'lganda `input` bilan bog'lanishni xohlasangiz yoki elementda yordamchi kutubxonani ishga tushirganingizda foydali bo'lishi mumkin.
 
-## Ref dan foydalanish
+## Refdan foydalanish
 
 <div class="composition-api">
 
 Composition API bilan aloqa yaratish uchun, biz `ref` ni xuddi shu nom bilan e'lon qilishimiz kerak:
+
 ```vue
 <script setup>
 import { ref, onMounted } from 'vue'
 
-
-// elementni bog'langan holda ushlash uchun ref e'lon qiling
+// elementni bog'langan holda ushlash uchun refni e'lon qiling
 // nom refning qiymati bilan mos bo'lishi shart
 const input = ref(null)
 
@@ -33,7 +32,7 @@ onMounted(() => {
 </template>
 ```
 
-Agar siz `<script setup>`dan foydalanmayotgan bo'lsangiz, `setup()` funksiyasidan `ref` ni qaytarayotganingiz (return qilayotganingiz)ga e'tibor bering:
+Agar siz `<script setup>`dan foydalanmayotgan bo'lsangiz, `setup()` funksiyasidan `ref` ni qaytarayotganingizga (return) e'tibor bering:
 
 ```js{6}
 export default {
@@ -67,13 +66,14 @@ export default {
 ```
 
 </div>
+
 Yodda tuting, siz `ref` ni faqatgina **komponent mounted bo'lgandan keyin** ishlata olasiz. Agar siz <span class="options-api">`$refs.input` ga</span><span class="composition-api">`input` ga</span> template expression ichida bog'lanishga harakat qilsangiz, birinchi render da uning qiymati `null` ga teng bo'ladi. 
 Buning sababi element birinchi renderdan keyin mavjud emas!
 
 <div class="composition-api">
 
-Agar siz template refning o'zgarishlarini kuzatishga harakat qilayotgan bo'lsangiz, refning qiymati `null` bo'lgan holat uchun ta'rif berganingizga ishonch hosil qiling:
- 
+Agar siz template refning o'zgarishlarini kuzatishga harakat qilayotgan bo'lsangiz, `ref`ning qiymati `null` bo'lgan holat uchun ta'rif berganingizga ishonch hosil qiling:
+
 ```js
 watchEffect(() => {
   if (input.value) {
@@ -94,7 +94,7 @@ Buni ham ko'ring: [Typing Template Refs](/guide/typescript/composition-api.html#
 
 <div class="composition-api">
 
-Qachonki `ref` `v-for` ichida ishlatilsa, shunga bog'langan ref mount bo'lgandan keyin, ichiga elementlar to'ldiriladigan, Array qiymatini o'z ichiga olishi kerak:
+Qachonki `ref` `v-for` ichida ishlatilsa, shunga bog'langan `ref` mount bo'lgandan keyin, ichiga elementlar to'ldiriladigan, Array qiymatini o'z ichiga olishi kerak:
 
 ```vue
 <script setup>
@@ -154,23 +154,23 @@ export default {
 
 </div>
 
-Yodda saqlash kerakki, `ref array` ning tartibi `source array` nikidek bir xil bo'lishiga kafolat **bermaydi**.
+Yodda saqlash kerakki, `ref array` ning tartibi `source array` nikidek bir xil bo'lishiga **kafolat bermaydi**.
 
 ## Funksiyali Reflar
 
-String kaliti o'rniga `ref` atributi har bir komponent yangilanganda chaqiriladigan va element bilan bog'liqlikni qayerda saqlash to'g'risida to'liq moslashuvchanlikni beradigan funksiyaga ham bog'lanishi mumkin. Funksiya bog'langan elementni birinchi argument sifatida qabul qiladi:
+String `key`i o'rniga `ref` atributi har bir komponent yangilanganda chaqiriladigan va element bilan bog'liqlikni qayerda saqlash to'g'risida to'liq moslashuvchanlikni beradigan funksiyaga ham bog'lanishi mumkin. Funksiya bog'langan elementni birinchi argument sifatida qabul qiladi:
 
 ```vue-html
 <input :ref="(el) => { /* ref yoki property uchun el parametrini tayinlang */ }">
 ```
 
-Yodda tuting biz dinamik bog'lanuvchi `:ref` ishlatyapmiz, shuning uchun ref nomli string o'rniga funksiyani uzatib yuboryapmiz. Element unmounted bo'lganda, argument `null` ga teng bo'ladi. Siz, albatta, inline funksiyaning o'rniga `method` ni ishlata olasiz.
+Yodda tuting biz dinamik bog'lanuvchi `:ref` ishlatyapmiz, shuning uchun ref nomli string o'rniga funksiyani uzatib yubora olamiz. Element unmounted bo'lganda, argument `null` ga teng bo'ladi. Siz, albatta, inline funksiyaning o'rniga `method` ni ishlata olasiz.
 
 ## Komponentdagi ref
 
 > Bu bo'lim [Komponentlar](/guide/essentials/component-basics) haqidagi bilimni o'z ichiga oladi. O'tkazib yuborishingiz va keyinroq qaytishingiz mumkin.
 
-`ref` bola komponentda ham ishlatilishi mumkin. Bu holatda bog'langan ref komponent namunasi bo'ladi: 
+`ref` bola komponentda ham ishlatilishi mumkin. Bu holatda bog'langan ref `komponent namunasi` bo'ladi: 
 
 <div class="composition-api">
 
@@ -215,11 +215,11 @@ export default {
 
 </div>
 
-<span class="composition-api">Agar bola komponent Options API ishlatayotgan bo'lsa yoki `<script setup>` ishlatmasa, bog'langan</span><span class="options-api">Bog'langan</span> namuna bola komponentning `this` kalit so'zi bilan bir xil bo'ladi, shuningdek ota komponent bola komponentning har bir xususiyati(property) va metodlariga to'liq ulana oladi - foydalana oladi. Bu esa ota va bola komponent o'rtasidagi birgalikda amalga oshiriladigan chambarchas ma'lumotlarni yaratishni osonlashtiradi, shuning uchun ko'p holatlarda komponent reflar kerakli bo'lganda ishlatilishi kerak. Birinchi o'rinda standard xususiyatlar(props) va emit(bola komponentdan turib ota komponentga ta'sir qilish)dan foydalangan holda ota / bola o'zaro ta'sirlarini amalga oshirishga harakat qilishingiz kerak.
+<span class="composition-api">Agar bola komponent `Options API` ishlatayotgan bo'lsa yoki `<script setup>` ishlatmasa, bog'langan</span><span class="options-api">Bog'langan</span> namuna, bola komponentning `this` kalit so'zi bilan bir xil bo'ladi, shuningdek ota komponent bola komponentning har bir xususiyati (property) va metodlariga to'liq ulana oladi - foydalana oladi. Bu esa ota va bola komponent o'rtasidagi birgalikda amalga oshiriladigan chambarchas ma'lumotlarni yaratishni osonlashtiradi, shuning uchun ko'p holatlarda komponent reflar kerakli bo'lganda ishlatilishi kerak. Birinchi o'rinda standard xususiyatlar (props) va emit(bola komponentdan turib ota komponentga ta'sir qilish)dan foydalangan holda, ota / bola o'zaro ta'sirlarini amalga oshirishga harakat qilishingiz kerak.
 
 <div class="composition-api">
 
-`<script setup>` ni **tabiiy holatda shaxsiy(by default private)** qilgan holatda foydalanayotgan komponentlar uchun istisno bor: bola komponent `defineExpose` `compiler` idan foydalanib umumiy interfeysni ochishni tanlamagunicha, ota komponent `<script setup>` dan foydalanayotgan bola komponentga bog'lanayotib bola komponentning hech narsadan foydalana olmaydi:
+`<script setup>` ni **tabiiy holatda shaxsiy(by default private)** qilgan holatda foydalanayotgan komponentlar uchun istisno bor: bola komponent `defineExpose` makrosidan foydalanib umumiy interfeysni ochishni tanlamagunicha, ota komponent `<script setup>` dan foydalanayotgan bola komponentga bog'lanayotib bola komponentning hech narsadan foydalana olmaydi:
 
 ```vue
 <script setup>
@@ -265,4 +265,5 @@ export default {
 ```
 
 Yuqoridagi misolda, ota shu komponentga template ref orqali bog'lanyapti va faqatgina `publicData` hamda `publicMethod` lardan foydalana oladi.
+
 </div>
