@@ -13,10 +13,7 @@
 <div class="composition-api">
 
 Composition API bilan aloqa yaratish uchun, biz `ref` ni xuddi shu nom bilan e'lon qilishimiz kerak:
-<<<<<<< HEAD
 
-=======
->>>>>>> fbdb2b7f277cdb54e6f52d1590c63074cde001d6
 ```vue
 <script setup>
 import { ref, onMounted } from 'vue'
@@ -35,11 +32,7 @@ onMounted(() => {
 </template>
 ```
 
-<<<<<<< HEAD
 Agar siz `<script setup>`dan foydalanmayotgan bo'lsangiz, `setup()` funksiyasidan `ref` ni qaytarayotganingizga (return) e'tibor bering:
-=======
-Agar siz `<script setup>`dan foydalanmayotgan bo'lsangiz, `setup()` funksiyasidan `ref` ni qaytarayotganingiz (return qilayotganingiz)ga e'tibor bering:
->>>>>>> fbdb2b7f277cdb54e6f52d1590c63074cde001d6
 
 ```js{6}
 export default {
@@ -79,13 +72,8 @@ Buning sababi element birinchi renderdan keyin mavjud emas!
 
 <div class="composition-api">
 
-<<<<<<< HEAD
 Agar siz template refning o'zgarishlarini kuzatishga harakat qilayotgan bo'lsangiz, `ref`ning qiymati `null` bo'lgan holat uchun ta'rif berganingizga ishonch hosil qiling:
 
-=======
-Agar siz template refning o'zgarishlarini kuzatishga harakat qilayotgan bo'lsangiz, refning qiymati `null` bo'lgan holat uchun ta'rif berganingizga ishonch hosil qiling:
- 
->>>>>>> fbdb2b7f277cdb54e6f52d1590c63074cde001d6
 ```js
 watchEffect(() => {
   if (input.value) {
@@ -231,11 +219,7 @@ export default {
 
 <div class="composition-api">
 
-<<<<<<< HEAD
 `<script setup>` ni **tabiiy holatda shaxsiy(by default private)** qilgan holatda foydalanayotgan komponentlar uchun istisno bor: bola komponent `defineExpose` makrosidan foydalanib umumiy interfeysni ochishni tanlamagunicha, ota komponent `<script setup>` dan foydalanayotgan bola komponentga bog'lanayotib bola komponentning hech narsadan foydalana olmaydi:
-=======
-`<script setup>` ni **tabiiy holatda shaxsiy(by default private)** qilgan holatda foydalanayotgan komponentlar uchun istisno bor: bola komponent `defineExpose` `compiler` idan foydalanib umumiy interfeysni ochishni tanlamagunicha, ota komponent `<script setup>` dan foydalanayotgan bola komponentga bog'lanayotib bola komponentning hech narsadan foydalana olmaydi:
->>>>>>> fbdb2b7f277cdb54e6f52d1590c63074cde001d6
 
 ```vue
 <script setup>
@@ -281,8 +265,5 @@ export default {
 ```
 
 Yuqoridagi misolda, ota shu komponentga template ref orqali bog'lanyapti va faqatgina `publicData` hamda `publicMethod` lardan foydalana oladi.
-<<<<<<< HEAD
 
-=======
->>>>>>> fbdb2b7f277cdb54e6f52d1590c63074cde001d6
 </div>
