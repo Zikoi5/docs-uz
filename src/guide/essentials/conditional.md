@@ -15,7 +15,7 @@ const awesome = ref(true)
 
 ## `v-if`
 
-`v-if` ko'rsatuvchisi (directive) blok kodni shartli ko'rsatish uchun ishlatiladi. Blok kod `v-if` ko'rsatuvchisining ifodasi(expression) rost qiymat qaytargandagina sahifada ko'rinadi.
+`v-if` ko'rsatuvchisi (directive) blok kodni shartli ko'rsatish uchun ishlatiladi. Blok kod `v-if` ko'rsatuvchisining ifodasi (expression) rost qiymat qaytargandagina sahifada ko'rinadi.
 
 ```vue-html
 <h1 v-if="awesome">Vue is awesome!</h1>
@@ -34,7 +34,7 @@ Siz `v-else`dan `v-if`ning "boshqa blok kod"ini ko'rsatishda ishlatishingiz mumk
 
 <div class="demo">
   <button @click="awesome = !awesome">Toggle</button>
-  <h1 v-if="awesome">Vue is   !</h1>
+  <h1 v-if="awesome">Vue is awesome!</h1>
   <h1 v-else>Oh no 😢</h1>
 </div>
 
@@ -102,7 +102,7 @@ Farq shundaki, `v-show` bilan ishlatilgan element doim sahifaga render bo'ladi v
 
 `v-if` bu "haqiqiy - real" shartli renderlash ko'rsatuvchisi hisoblanadi, chunki u shartli blok ichidagi hodisa eshituvchilari (event listeners) va bola komponentlarning to'g'ri yo'q qilinishi va almashinishlar davomida qayta yaratilishini ta'minlaydi.
 
-**P.S.** Ya'ni, agarda `v-if` ning qiymati `yolg'on` (falsy) qiymatga o'zgarsa, bu holatda `v-if` bilan bog'langan komponent butun sahifadan o'chib ketadi, DOMdan ham, `rost` (truthy) qiymatga o'zgarganda, yana yangidan yaratiladi.
+(**P.S.** Ya'ni, agarda `v-if` ning qiymati `yolg'on` (falsy) qiymatga o'zgarsa, bu holatda `v-if` bilan bog'langan komponent butun sahifadan o'chib ketadi, DOMdan ham, `rost` (truthy) qiymatga o'zgarganda, yana yangidan yaratiladi.)
 
 `v-if` yana **lazy** ham hisoblanadi: agar shart dastlabki renderda `yolg'on` qiymatda bo'lsa, u hech narsa qilmaydi - shart birinchi marta to'g'ri bo'lmaguncha shartli blok ko'rsatilmaydi.
 
