@@ -74,7 +74,7 @@ Siz `v-else`dan `v-if`ning "boshqa blok kod"ini ko'rsatishda ishlatishingiz mumk
 
 ## `<template>`dagi `v-if`
 
-`v-if` ko'rsatuvchi (directive) bo'lgani uchun, u yolg'iz elementga biriktirilishi shart. Ammo bir nechta elementni almashtirmoqchi bo'lsak-chi? Bu holatda biz `v-if`ni "ko'rinmas o'rab turadigan" - "qobiq" bo'lib xizmat qiluvchi `<template>` elementida ishlatishimiz mumkin. Sahifada ko'rinadigan so'nggi natija `<template>` elementini o'z ichiga olmaydi.
+`v-if` ko'rsatuvchi (directive) bo'lgani uchun, u yolg'iz elementga biriktirilishi shart. Ammo bir nechta elementni almashtirmoqchi bo'lsak-chi? Bu holatda biz `v-if` ni ko'zga ko'rinmas qatlam sifatida xizmat qiluvchi `<template>` elementida ishlata olamiz. Sahifada ko'rinadigan so'nggi natija `<template>` elementini o'z ichiga olmaydi.
 
 ```vue-html
 <template v-if="ok">
