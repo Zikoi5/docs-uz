@@ -15,7 +15,7 @@ const awesome = ref(true)
 
 ## `v-if`
 
-The directive `v-if` is used to conditionally render a block. The block will only be rendered if the directive's expression returns a truthy value.
+`v-if` ko'rsatuvchisi (directive) blok kodni shartli ko'rsatish uchun ishlatiladi. Blok kod `v-if` ko'rsatuvchisining ifodasi (expression) rost qiymat qaytargandagina sahifada ko'rinadi.
 
 ```vue-html
 <h1 v-if="awesome">Vue is awesome!</h1>
@@ -23,7 +23,7 @@ The directive `v-if` is used to conditionally render a block. The block will onl
 
 ## `v-else`
 
-You can use the `v-else` directive to indicate an "else block" for `v-if`:
+Siz `v-else`dan `v-if`ning "boshqa blok kod"ini ko'rsatishda ishlatishingiz mumkin:
 
 ```vue-html
 <button @click="awesome = !awesome">Toggle</button>
@@ -49,11 +49,11 @@ You can use the `v-else` directive to indicate an "else block" for `v-if`:
 
 </div>
 
-A `v-else` element must immediately follow a `v-if` or a `v-else-if` element - otherwise it will not be recognized.
+`v-else` elementi `v-if` yoki `v-else-if` elementining ortidan kelishi shart - aks holda kod ishga tushmaydi.
 
 ## `v-else-if`
 
-The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. It can also be chained multiple times:
+`v-else-if`, nomidan ko'rinib turganidek, `v-if` uchun "yana boshqa shart"ni bajarishda xizmat qiladi. U bir necha marotaba zanjirlanib kelishi mumkin:
 
 ```vue-html
 <div v-if="type === 'A'">
@@ -70,11 +70,11 @@ The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. 
 </div>
 ```
 
-Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a `v-else-if` element.
+`v-else` ga o'xshab, `v-else-if` elementi ham `v-if` yoki `v-else-if` elementining ortidan kelishi shart.
 
-## `v-if` on `<template>`
+## `<template>`dagi `v-if`
 
-Because `v-if` is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<template>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
+`v-if` ko'rsatuvchi (directive) bo'lgani uchun, u yolg'iz elementga biriktirilishi shart. Ammo bir nechta elementni almashtirmoqchi bo'lsak-chi? Bu holatda biz `v-if`ni "ko'rinmas o'rab turadigan" - "qobiq" bo'lib xizmat qiluvchi `<template>` elementida ishlatishimiz mumkin. Sahifada ko'rinadigan so'nggi natija `<template>` elementini o'z ichiga olmaydi.
 
 ```vue-html
 <template v-if="ok">
@@ -84,34 +84,36 @@ Because `v-if` is a directive, it has to be attached to a single element. But wh
 </template>
 ```
 
-`v-else` and `v-else-if` can also be used on `<template>`.
+`v-else` va `v-else-if` ham `<template>`da ishlatilishi mumkin.
 
 ## `v-show`
 
-Another option for conditionally displaying an element is the `v-show` directive. The usage is largely the same:
+Shartli ravishda ko'rsatishning boshqa bir varianti bu `v-show` ko'rsatuvchisi hisoblanadi. Foydalanish asosan bir xil:
 
 ```vue-html
 <h1 v-show="ok">Hello!</h1>
 ```
 
-The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` only toggles the `display` CSS property of the element.
+Farq shundaki, `v-show` bilan ishlatilgan element doim sahifaga render bo'ladi va DOMda qoladi; `v-show` faqat elementning `display` CSS xususiyatini almashtiradi.
 
-`v-show` doesn't support the `<template>` element, nor does it work with `v-else`.
+`v-show` xuddi `v-else` bilan ishlamaganidek, `<template>` elementini ham qo'llab-quvvatlamaydi.
 
-## `v-if` vs `v-show`
+## `v-if` `v-show`ga qarshi
 
-`v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
+`v-if` bu "haqiqiy - real" shartli renderlash ko'rsatuvchisi hisoblanadi, chunki u shartli blok ichidagi hodisa eshituvchilari (event listeners) va bola komponentlarning to'g'ri yo'q qilinishi va almashinishlar davomida qayta yaratilishini ta'minlaydi.
 
-`v-if` is also **lazy**: if the condition is false on initial render, it will not do anything - the conditional block won't be rendered until the condition becomes true for the first time.
+(**P.S.** Ya'ni, agarda `v-if` ning qiymati `yolg'on` (falsy) qiymatga o'zgarsa, bu holatda `v-if` bilan bog'langan komponent butun sahifadan o'chib ketadi, DOMdan ham, `rost` (truthy) qiymatga o'zgarganda, yana yangidan yaratiladi.)
 
-In comparison, `v-show` is much simpler - the element is always rendered regardless of initial condition, with CSS-based toggling.
+`v-if` yana **lazy** ham hisoblanadi: agar shart dastlabki renderda `yolg'on` qiymatda bo'lsa, u hech narsa qilmaydi - shart birinchi marta to'g'ri bo'lmaguncha shartli blok ko'rsatilmaydi.
 
-Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
+Taqqoslaganda, `v-show` ancha soddaroq - element har doim, boshlang'ich holatidan qat'iy nazar, CSSga asoslangan almashtirish bilan ko'rsatiladi.
 
-## `v-if` with `v-for`
+Umumiy qilib aytganda, `v-if` almashtirishda ko'p kuch sarflasa, `v-show` boshlang'ich renderda ko'p kuch ketkazadi. Shuning uchun siz biror narsani tez-tez almashtirmoqchi bo'lsangiz `v-show`ni afzal tuting, agar `shart` ishlab turgan (`runtime`) vaqtida o'zgarishi mumkin bo'lmasa `v-if`ni tanlang.
 
-::: warning Note
-It's **not** recommended to use `v-if` and `v-for` on the same element due to implicit precedence. Refer to [style guide](/style-guide/rules-essential.html#avoid-v-if-with-v-for) for details.
+## `v-if` bilan `v-for`
+
+::: warning Yodda tuting
+`v-if` va `v-for`ni bitta element ichida ishlatish **tavsiya qilinmaydi**. Batafsil ma'lumot uchun [style guide](/style-guide/rules-essential.html#avoid-v-if-with-v-for) ga murojaat qiling.
 :::
 
-When `v-if` and `v-for` are both used on the same element, `v-if` will be evaluated first. See the [list rendering guide](list#v-for-with-v-if) for details.
+`v-if` va `v-for`ni bir element ichida ishlatilganda, `v-if` birinchi bo'lib baholanadi. Batafsil ma'lumot uchun [list rendering guide](list#v-for-with-v-if) ni ko'ring.
