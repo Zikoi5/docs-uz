@@ -98,7 +98,7 @@ Farq shundaki, `v-show` bilan ishlatilgan element doim sahifaga render bo'ladi v
 
 `v-show` xuddi `v-else` bilan ishlamaganidek, `<template>` elementini ham qo'llab-quvvatlamaydi.
 
-## `v-if` `v-show`ga qarshi
+## `v-if` va `v-show`ning farqlari
 
 `v-if` bu "haqiqiy - real" shartli renderlash ko'rsatuvchisi hisoblanadi, chunki u shartli blok ichidagi hodisa eshituvchilari (event listeners) va bola komponentlarning to'g'ri yo'q qilinishi va almashinishlar davomida qayta yaratilishini ta'minlaydi.
 
