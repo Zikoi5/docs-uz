@@ -17,7 +17,7 @@
 
 Ushbu holatda javascript bizga "a" elementda "b" hodisa sodir bo'ldi deb "c" funksiyaga "d" obyekt jo'natadi.
 
-Bizning misolda "a" bu rasm, "b" bu chap tugma bosilganligi haqida, "c" funksiyaga "d" [`MouseEvent`](https://developer.mozilla.org/ru/docs/Web/API/MouseEvent) obyekti ni uzatadi. `MouseEvent` obyektda qaysi elementga bosganimiz, sichqonchaning bosilgan vaqtdagi kordinatlari va h.k. ma'lumotlar saqlanadi.
+Bizning misolda "a" bu rasm, "b" bu chap tugma bosilganligi haqida, "c" funksiyaga "d" [`MouseEvent`](https://developer.mozilla.org/ru/docs/Web/API/MouseEvent) obyektini uzatadi. `MouseEvent` obyektda qaysi elementga bosganimiz, sichqonchaning bosilgan vaqtdagi kordinatlari va h.k. ma'lumotlar saqlanadi.
 :::
 
 Biz `v-on` direktivani ishlatishimiz mumkin. Ko'pincha bu `@` belgisi bilan boshlanadi. Ushbu direktiva bizga, tepada aytib o'tilganidek "a" elementda "b" hodisa uchraganda qaysi "c" funksiyani chaqirishini belgilaydi. Misol uchun `v-on:click="handler"` yoki qisqa qilib yozganda `@click="handler"`.
@@ -26,7 +26,7 @@ Quyidagi misolda `click` bu "b" hodisa, `handler` esa "c" funksiyadir.
 
 `handler` yoki "c" funksiya o'rniga biz to'g'ridan to'g'ri javascript ifodasini berishimiz mumkin.
 
-"c" funksiyani, aytib o'tganimizdek 2 hil turi mavjud:
+"c" funksiyani, aytib o'tganimizdek 2 xil turi mavjud:
 
 1. **Inline handler**, yoki javascript ifoda
 
@@ -57,17 +57,17 @@ data() {
 
 ```vue-html
 <button @click="count++">1 qo'shish</button>
-<p>Tugma {{ count }} marotada bosildi</p>
+<p>Tugma {{ count }} marotaba bosildi</p>
 ```
 
 <div class="composition-api">
 
-[Tekshirib ko'rish](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZGF0YSgpIHtcblx0ICByZXR1cm4ge1xuICAgIFx0Y291bnQ6IDBcbiAgXHR9XG5cdH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG5cdDxidXR0b24gQGNsaWNrPVwiY291bnQrK1wiPjEgcW8nc2hpc2g8L2J1dHRvbj5cbiAgPHA+VHVnbWEge3sgY291bnQgfX0gbWFyb3RhZGEgYm9zaWxkaTwvcD5cbjwvdGVtcGxhdGU+IiwiaW1wb3J0LW1hcC5qc29uIjoie1xuICBcImltcG9ydHNcIjoge1xuICAgIFwidnVlXCI6IFwiaHR0cHM6Ly9zZmMudnVlanMub3JnL3Z1ZS5ydW50aW1lLmVzbS1icm93c2VyLmpzXCIsXG4gICAgXCJ2dWUvc2VydmVyLXJlbmRlcmVyXCI6IFwiaHR0cHM6Ly9zZmMudnVlanMub3JnL3NlcnZlci1yZW5kZXJlci5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
+[Tekshirib ko'rish](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZGF0YSgpIHtcblx0ICByZXR1cm4ge1xuICAgIFx0Y291bnQ6IDBcbiAgXHR9XG5cdH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG5cdDxidXR0b24gQGNsaWNrPVwiY291bnQrK1wiPjEgcW8nc2hpc2g8L2J1dHRvbj5cbiAgPHA+VHVnbWEge3sgY291bnQgfX0gbWFyb3RhYmEgYm9zaWxkaTwvcD5cbjwvdGVtcGxhdGU+IiwiaW1wb3J0LW1hcC5qc29uIjoie1xuICBcImltcG9ydHNcIjoge1xuICAgIFwidnVlXCI6IFwiaHR0cHM6Ly9zZmMudnVlanMub3JnL3Z1ZS5ydW50aW1lLmVzbS1icm93c2VyLmpzXCIsXG4gICAgXCJ2dWUvc2VydmVyLXJlbmRlcmVyXCI6IFwiaHR0cHM6Ly9zZmMudnVlanMub3JnL3NlcnZlci1yZW5kZXJlci5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
 
 </div>
 <div class="options-api">
 
-[Tekshirib ko'rish](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmltcG9ydCB7IHJlZiB9IGZyb20gJ3Z1ZSdcblxuZXhwb3J0IGRlZmF1bHQge1xuICBzZXR1cCgpIHtcbiAgICBjb25zdCBjb3VudCA9IHJlZigwKVxuICAgIFxuICAgIHJldHVybiB7IGNvdW50IH1cbiAgfVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cblx0PGJ1dHRvbiBAY2xpY2s9XCJjb3VudCsrXCI+MSBxbydzaGlzaDwvYnV0dG9uPlxuICA8cD5UdWdtYSB7eyBjb3VudCB9fSBtYXJvdGFkYSBib3NpbGRpPC9wPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIixcbiAgICBcInZ1ZS9zZXJ2ZXItcmVuZGVyZXJcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvc2VydmVyLXJlbmRlcmVyLmVzbS1icm93c2VyLmpzXCJcbiAgfVxufSJ9)
+[Tekshirib ko'rish](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmltcG9ydCB7IHJlZiB9IGZyb20gJ3Z1ZSdcblxuZXhwb3J0IGRlZmF1bHQge1xuICBzZXR1cCgpIHtcbiAgICBjb25zdCBjb3VudCA9IHJlZigwKVxuICAgIFxuICAgIHJldHVybiB7IGNvdW50IH1cbiAgfVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cblx0PGJ1dHRvbiBAY2xpY2s9XCJjb3VudCsrXCI+MSBxbydzaGlzaDwvYnV0dG9uPlxuICA8cD5UdWdtYSB7eyBjb3VudCB9fSBtYXJvdGFiYSBib3NpbGRpPC9wPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIixcbiAgICBcInZ1ZS9zZXJ2ZXItcmVuZGVyZXJcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvc2VydmVyLXJlbmRlcmVyLmVzbS1icm93c2VyLmpzXCJcbiAgfVxufSJ9)
 
 </div>
 
@@ -134,22 +134,22 @@ methods: {
 
 Yuqorida ko'rsatilgan misolda `click` "b" hodisani Vue avtomatik tarzda mavjud hodisalar ro'yxatidan tekshirib "eshitishni" boshlaydi.
 
-Undan tashqari misolda ko'rsatilgan funksiyaga aytib o'tganimizdek "d" obyekt avtomatik tarzda uzatiladi, va ushbu "d" obyekt orqali biz "a" elementni **teg**'ini `event.target.tagName` orqali ko'rishimiz mumkin.
+Undan tashqari misolda ko'rsatilgan funksiyaga aytib o'tganimizdek "d" obyekt avtomatik tarzda uzatiladi va ushbu "d" obyekt orqali biz "a" elementni **teg**'ini `event.target.tagName` orqali ko'rishimiz mumkin.
 
 <div class="composition-api">
 
-Yanada batafsilroq: [Typing Event Handlers](/guide/typescript/composition-api.html#typing-event-handlers) <sup class="vt-badge ts" />
+Batafsil: [Typing Event Handlers](/guide/typescript/composition-api.html#typing-event-handlers) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">
 
-Yanada batafsilroq: [Typing Event Handlers](/guide/typescript/options-api.html#typing-event-handlers) <sup class="vt-badge ts" />
+Batafsil: [Typing Event Handlers](/guide/typescript/options-api.html#typing-event-handlers) <sup class="vt-badge ts" />
 
 </div>
 
 ### "Method" va "Inline" aniqlanish uslubi
 
-Vue dagi "template compiler", ya'ni shablon kompilyatori yoki qo'pol qilib aytganda HTML kompilyator avtomatik tarzda siz uzatgan kod bo'yicha uni "Method"(usul, funksiya) yoki "Inline"(javascript ifoda) ligini uning tuzulishi bo'yicha aniqlaydi.
+Vue dagi "template compiler", ya'ni shablon kompilyatori yoki qo'pol qilib aytganda HTML kompilyator avtomatik tarzda siz uzatgan kod bo'yicha uni "Method" (usul, funksiya) yoki "Inline" (javascript ifoda) ligini uning tuzulishi bo'yicha aniqlaydi.
 
 Misol uchun `foo`, `foo.bar` va `foo['bar']` lar `foo` bu usul, funksiya nomi. Yoki `foo.bar` va `foo['bar']` `foo` obyektning `bar` usuli, funksiyasi. Kompilyator uni aniqlab "Method" deb belgilaydi.
 
