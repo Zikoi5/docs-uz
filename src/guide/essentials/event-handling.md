@@ -1,4 +1,4 @@
-# Event Handling
+# "Event" yoki Hodisalar bilan ishlash
 
 <div class="options-api">
   <VueSchoolLink href="https://vueschool.io/lessons/user-events-in-vue-3" title="Free Vue.js Events Lesson"/>
@@ -8,19 +8,33 @@
   <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-user-events-in-vue-3" title="Free Vue.js Events Lesson"/>
 </div>
 
-## Listening to Events
+## "Event"larni "eshitish"
 
-We can use the `v-on` directive, which we typically shorten to the `@` symbol, to listen to DOM events and run some JavaScript when they're triggered. The usage would be `v-on:click="handler"` or with the shortcut, `@click="handler"`.
+"Event"larni "eshitish" deganda biz "event"ni har safar yangi natija kelishi bilan uni olib biron amal qilishni nazarda tutamiz.
 
-The handler value can be one of the following:
+:::tip Atama
+**Event** bu hodisa. Misol uchun sichqoncha bilan rasmga o'ng tugmasini bosganiz bu bir hodisa, chap tugma bu boshqa.
 
-1. **Inline handlers:** Inline JavaScript to be executed when the event is triggered (similar to the native `onclick` attribute).
+Ushbu holatda javascript bizga "a" elementda "b" hodisa sodir bo'ldi deb "c" funksiyaga "d" obyekt jo'natadi.
 
-2. **Method handlers:** A property name or path that points to a method defined on the component.
+Bizning misolda "a" bu rasm, "b" bu chap tugma bosilganligi haqida, "c" funksiyaga "d" [`MouseEvent`](https://developer.mozilla.org/ru/docs/Web/API/MouseEvent) obyekti ni uzatadi. `MouseEvent` obyektda qaysi elementga bosganimiz, sichqonchaning bosilgan vaqtdagi kordinatlari va h.k. ma'lumotlar saqlanadi.
+:::
 
-## Inline Handlers
+Biz `v-on` direktivani ishlatishimiz mumkin. Ko'pincha bu `@` belgisi bilan boshlanadi. Ushbu direktiva bizga, tepada aytib o'tilganidek "a" elementda "b" hodisa uchraganda qaysi "c" funksiyani chaqirishini belgilaydi. Misol uchun `v-on:click="handler"` yoki qisqa qilib yozganda `@click="handler"`.
 
-Inline handlers are typically used in simple cases, for example:
+Quyidagi misolda `click` bu "b" hodisa, `handler` esa "c" funksiyadir.
+
+`handler` yoki "c" funksiya o'rniga biz to'g'ridan to'g'ri javascript ifodasini berishimiz mumkin.
+
+"c" funksiyani, aytib o'tganimizdek 2 hil turi mavjud:
+
+1. **Inline handler**, yoki javascript ifoda
+
+2. **Method handler**, yoki usul, funksiya orqali
+
+## "Inline Handlers" yoki javascript ifodalar
+
+**Inline handler**lar odatda oddiy holatda ishlatiladi, misol uchun:
 
 <div class="composition-api">
 
@@ -42,35 +56,36 @@ data() {
 </div>
 
 ```vue-html
-<button @click="count++">Add 1</button>
-<p>Count is: {{ count }}</p>
+<button @click="count++">1 qo'shish</button>
+<p>Tugma {{ count }} marotada bosildi</p>
 ```
 
 <div class="composition-api">
 
-[Try it in the Playground](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiB9IGZyb20gJ3Z1ZSdcblxuY29uc3QgY291bnRlciA9IHJlZigwKVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cblx0PGJ1dHRvbiBAY2xpY2s9XCJjb3VudGVyKytcIj5BZGQgMTwvYnV0dG9uPlxuXHQ8cD5UaGUgYnV0dG9uIGFib3ZlIGhhcyBiZWVuIGNsaWNrZWQge3sgY291bnRlciB9fSB0aW1lcy48L3A+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
+[Tekshirib ko'rish](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZGF0YSgpIHtcblx0ICByZXR1cm4ge1xuICAgIFx0Y291bnQ6IDBcbiAgXHR9XG5cdH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG5cdDxidXR0b24gQGNsaWNrPVwiY291bnQrK1wiPjEgcW8nc2hpc2g8L2J1dHRvbj5cbiAgPHA+VHVnbWEge3sgY291bnQgfX0gbWFyb3RhZGEgYm9zaWxkaTwvcD5cbjwvdGVtcGxhdGU+IiwiaW1wb3J0LW1hcC5qc29uIjoie1xuICBcImltcG9ydHNcIjoge1xuICAgIFwidnVlXCI6IFwiaHR0cHM6Ly9zZmMudnVlanMub3JnL3Z1ZS5ydW50aW1lLmVzbS1icm93c2VyLmpzXCIsXG4gICAgXCJ2dWUvc2VydmVyLXJlbmRlcmVyXCI6IFwiaHR0cHM6Ly9zZmMudnVlanMub3JnL3NlcnZlci1yZW5kZXJlci5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
 
 </div>
 <div class="options-api">
 
-[Try it in the Playground](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZGF0YSgpIHtcblx0ICByZXR1cm4ge1xuICAgIFx0Y291bnRlcjogMFxuICBcdH1cblx0fVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cblx0PGJ1dHRvbiBAY2xpY2s9XCJjb3VudGVyKytcIj5BZGQgMTwvYnV0dG9uPlxuXHQ8cD5UaGUgYnV0dG9uIGFib3ZlIGhhcyBiZWVuIGNsaWNrZWQge3sgY291bnRlciB9fSB0aW1lcy48L3A+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
+[Tekshirib ko'rish](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmltcG9ydCB7IHJlZiB9IGZyb20gJ3Z1ZSdcblxuZXhwb3J0IGRlZmF1bHQge1xuICBzZXR1cCgpIHtcbiAgICBjb25zdCBjb3VudCA9IHJlZigwKVxuICAgIFxuICAgIHJldHVybiB7IGNvdW50IH1cbiAgfVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cblx0PGJ1dHRvbiBAY2xpY2s9XCJjb3VudCsrXCI+MSBxbydzaGlzaDwvYnV0dG9uPlxuICA8cD5UdWdtYSB7eyBjb3VudCB9fSBtYXJvdGFkYSBib3NpbGRpPC9wPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIixcbiAgICBcInZ1ZS9zZXJ2ZXItcmVuZGVyZXJcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvc2VydmVyLXJlbmRlcmVyLmVzbS1icm93c2VyLmpzXCJcbiAgfVxufSJ9)
 
 </div>
 
-## Method Handlers
+## "Method Handlers" yoki usul, funksiyalar
 
-The logic for many event handlers will be more complex though, and likely isn't feasible with inline handlers. That's why `v-on` can also accept the name or path of a component method you'd like to call.
+Ilova logikasi qiyinroq bo'lgan holatda, "Inline handler" orqali yozishimiz qiyin bo'lishi mumkin. Shuning uchun oddiy va qisqa javascript ifoda o'rniga usul yoki funksiya nomini yozishimiz mumkin.
 
-For example:
+Misol uchun:
 
 <div class="composition-api">
 
 ```js
 const name = ref('Vue.js')
 
+// `greet` bu yuqorida aytib o'tganimizdek "c" funksiya hisoblanadi
 function greet(event) {
-  alert(`Hello ${name.value}!`)
-  // `event` is the native DOM event
+  alert(`Salom ${name.value}!`)
+  // `event` bu yuqorida aytib o'tganimizdek "d" obyekt hisoblanadi
   if (event) {
     alert(event.target.tagName)
   }
@@ -87,10 +102,11 @@ data() {
   }
 },
 methods: {
+  // `greet` bu yuqorida aytib o'tganimizdek "c" funksiya hisoblanadi
   greet(event) {
-    // `this` inside methods points to the current active instance
-    alert(`Hello ${this.name}!`)
-    // `event` is the native DOM event
+    // `this` bu quyidagi `Vue component` ga yo'naltiruvchi hisoblanadi
+    alert(`Salom ${this.name}!`)
+    // `event` bu yuqorida aytib o'tganimizdek "d" obyekt hisoblanadi
     if (event) {
       alert(event.target.tagName)
     }
@@ -101,37 +117,43 @@ methods: {
 </div>
 
 ```vue-html
-<!-- `greet` is the name of the method defined above -->
-<button @click="greet">Greet</button>
+<!-- `greet` bu yuqorida belgilagan usul, funksiyamiz -->
+<button @click="greet">Salom!</button>
 ```
 
 <div class="composition-api">
 
-[Try it in the Playground](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiB9IGZyb20gJ3Z1ZSdcblxuY29uc3QgbmFtZSA9IHJlZignVnVlLmpzJylcblxuZnVuY3Rpb24gZ3JlZXQoZXZlbnQpIHtcbiAgYWxlcnQoYEhlbGxvICR7bmFtZS52YWx1ZX0hYClcbiAgLy8gYGV2ZW50YCBpcyB0aGUgbmF0aXZlIERPTSBldmVudFxuICBpZiAoZXZlbnQpIHtcbiAgICBhbGVydChldmVudC50YXJnZXQudGFnTmFtZSlcbiAgfVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cblx0PGJ1dHRvbiBAY2xpY2s9XCJncmVldFwiPkdyZWV0PC9idXR0b24+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
+[Tekshirib ko'rish](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiB9IGZyb20gJ3Z1ZSdcblxuY29uc3QgbmFtZSA9IHJlZignVnVlLmpzJylcblxuLy8gYGdyZWV0YCBidSB5dXFvcmlkYSBheXRpYiBvJ3RnYW5pbWl6ZGVrIFwiY1wiIGZ1bmtzaXlhIGhpc29ibGFuYWRpXG5mdW5jdGlvbiBncmVldChldmVudCkge1xuICBhbGVydChgU2Fsb20gJHtuYW1lLnZhbHVlfSFgKVxuICAvLyBgZXZlbnRgIGJ1IHl1cW9yaWRhIGF5dGliIG8ndGdhbmltaXpkZWsgXCJkXCIgb2J5ZWt0IGhpc29ibGFuYWRpXG4gIGlmIChldmVudCkge1xuICAgIGFsZXJ0KGV2ZW50LnRhcmdldC50YWdOYW1lKVxuICB9XG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuXHQ8YnV0dG9uIEBjbGljaz1cImdyZWV0XCI+U2Fsb20hPC9idXR0b24+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiLFxuICAgIFwidnVlL3NlcnZlci1yZW5kZXJlclwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy9zZXJ2ZXItcmVuZGVyZXIuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59In0=)
 
 </div>
 <div class="options-api">
 
-[Try it in the Playground](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZGF0YSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgbmFtZTogJ1Z1ZS5qcydcbiAgICB9XG4gIH0sXG4gIG1ldGhvZHM6IHtcbiAgICBncmVldChldmVudCkge1xuICAgICAgLy8gYHRoaXNgIGluc2lkZSBtZXRob2RzIHBvaW50cyB0byB0aGUgY3VycmVudCBhY3RpdmUgaW5zdGFuY2VcbiAgICAgIGFsZXJ0KGBIZWxsbyAke3RoaXMubmFtZX0hYClcbiAgICAgIC8vIGBldmVudGAgaXMgdGhlIG5hdGl2ZSBET00gZXZlbnRcbiAgICAgIGlmIChldmVudCkge1xuICAgICAgICBhbGVydChldmVudC50YXJnZXQudGFnTmFtZSlcbiAgICAgIH1cbiAgICB9XG4gIH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG5cdDxidXR0b24gQGNsaWNrPVwiZ3JlZXRcIj5HcmVldDwvYnV0dG9uPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59In0=)
+[Tekshirib ko'rish](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZGF0YSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgbmFtZTogJ1Z1ZS5qcydcbiAgICB9XG4gIH0sXG4gIG1ldGhvZHM6IHtcbiAgICAvLyBgZ3JlZXRgIGJ1IHl1cW9yaWRhIGF5dGliIG8ndGdhbmltaXpkZWsgXCJjXCIgZnVua3NpeWEgaGlzb2JsYW5hZGlcbiAgICBncmVldChldmVudCkge1xuICAgICAgLy8gYHRoaXNgIGJ1IHF1eWlkYWdpIGBWdWUgY29tcG9uZW50YCBnYSB5byduYWx0aXJ1dmNoaSBoaXNvYmxhbmFkaVxuICAgICAgYWxlcnQoYFNhbG9tICR7dGhpcy5uYW1lfSFgKVxuICAgICAgLy8gYGV2ZW50YCBidSB5dXFvcmlkYSBheXRpYiBvJ3RnYW5pbWl6ZGVrIFwiZFwiIG9ieWVrdCBoaXNvYmxhbmFkaVxuICAgICAgaWYgKGV2ZW50KSB7XG4gICAgICAgIGFsZXJ0KGV2ZW50LnRhcmdldC50YWdOYW1lKVxuICAgICAgfVxuICAgIH1cbiAgfVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cblx0PGJ1dHRvbiBAY2xpY2s9XCJncmVldFwiPlNhbG9tITwvYnV0dG9uPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIixcbiAgICBcInZ1ZS9zZXJ2ZXItcmVuZGVyZXJcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvc2VydmVyLXJlbmRlcmVyLmVzbS1icm93c2VyLmpzXCJcbiAgfVxufSJ9)
 
 </div>
 
-A method handler automatically receives the native DOM Event object that triggers it - in the example above, we are able to access the element dispatching the event via `event.target.tagName`.
+Yuqorida ko'rsatilgan misolda `click` "b" hodisani Vue avtomatik tarzda mavjud hodisalar ro'yxatidan tekshirib "eshitishni" boshlaydi.
+
+Undan tashqari misolda ko'rsatilgan funksiyaga aytib o'tganimizdek "d" obyekt avtomatik tarzda uzatiladi, va ushbu "d" obyekt orqali biz "a" elementni **teg**'ini `event.target.tagName` orqali ko'rishimiz mumkin.
 
 <div class="composition-api">
 
-See also: [Typing Event Handlers](/guide/typescript/composition-api.html#typing-event-handlers) <sup class="vt-badge ts" />
+Yanada batafsilroq: [Typing Event Handlers](/guide/typescript/composition-api.html#typing-event-handlers) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">
 
-See also: [Typing Event Handlers](/guide/typescript/options-api.html#typing-event-handlers) <sup class="vt-badge ts" />
+Yanada batafsilroq: [Typing Event Handlers](/guide/typescript/options-api.html#typing-event-handlers) <sup class="vt-badge ts" />
 
 </div>
 
-### Method vs. Inline Detection
+### "Method" va "Inline" aniqlanish uslubi
 
-The template compiler detects method handlers by checking whether the `v-on` value string is a valid JavaScript identifier or property access path. For example, `foo`, `foo.bar` and `foo['bar']` are treated as method handlers, while `foo()` and `count++` are treated as inline handlers.
+Vue dagi "template compiler", ya'ni shablon kompilyatori yoki qo'pol qilib aytganda HTML kompilyator avtomatik tarzda siz uzatgan kod bo'yicha uni "Method"(usul, funksiya) yoki "Inline"(javascript ifoda) ligini uning tuzulishi bo'yicha aniqlaydi.
+
+Misol uchun `foo`, `foo.bar` va `foo['bar']` lar `foo` bu usul, funksiya nomi. Yoki `foo.bar` va `foo['bar']` `foo` obyektning `bar` usuli, funksiyasi. Kompilyator uni aniqlab "Method" deb belgilaydi.
+
+Agar berilgan kod to'g'ri yozilgan javascript ifoda bo'lsa, uni "Inline" deb belgilaydi. Misol uchun `count++`.
 
 ## Calling Methods in Inline Handlers
 
