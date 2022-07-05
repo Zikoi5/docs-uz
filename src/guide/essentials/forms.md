@@ -31,7 +31,7 @@ Frontendda formlar bilan shug'ullanayotganda, bizga Javascriptning hodisalarini,
   @input="event => text = event.target.value">
 ```
 
-`v-model` ko'rsatuvchisi biz yuqoridagilarni soddalashtirishga yordam beradi:
+`v-model` ko'rsatuvchisi bizga yuqoridagilarni soddalashtirishga yordam beradi:
 
 ```vue-html
 <input v-model="text">
@@ -44,9 +44,7 @@ Qo'shimcha qilib aytganda, `<textarea>`, `<select>` elementlaridagidek, `v-model
 - `<select>` `value`ni xususiyatdek (prop) va `change`ni hodisa sifatida foydalanadi.
 
 ::: tip Yodda tuting
-`v-model` har qanday form elementlarida topilgan boshlang'ich `value`, `checked` yoki `selected` attributlarini e'tiborga olmaydi.
-
-`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. U har doim joriy bog'langan JavaScript holatiga "haqiqat manbai" sifatida qaraydi. <span class="options-api">`data` variantidan</span><span class="composition-api">Reactivity API laridan</span> foydalangan holda, boshlang'ich qiymatni JavaScript tomonida e'lon qilishingiz kerak.
+`v-model` har qanday form elementlarida topilgan boshlang'ich `value`, `checked` yoki `selected` attributlarini e'tiborga olmaydi. U har doim joriy bog'langan JavaScript holatiga "haqiqat manbai" sifatida qaraydi. <span class="options-api">`data` variantidan</span><span class="composition-api">Reactivity API laridan</span> foydalangan holda, boshlang'ich qiymatni JavaScript tomonida e'lon qilishingiz kerak.
 :::
 
 ## Foydalanishning sodda usuli
@@ -370,7 +368,7 @@ export default {
 <!-- "a" qachonki checked bo'lganida, `picked`ning qiymati `string`ga teng bo'ladi -->
 <input type="radio" v-model="picked" value="a" />
 
-<!-- `toggle` rost yoki yolg'on qiymatga ega bo'ladi -->
+<!-- `toggle` rost (true) yoki yolg'on (false) qiymatga ega bo'ladi -->
 <input type="checkbox" v-model="toggle" />
 
 <!-- birinchi variant tanlanganda, `selected` string ko'rinishidagi "abc"ga teng bo'ladi -->
@@ -427,11 +425,11 @@ Birinchi `radio` inputi checked bo'lganda, `first`ning qiymati `pick`ga tenglana
 `v-model` `string` bo'lmagan qiymatlarning (non-string values) qiymatlarini bog'lashni ham qo'llab-quvvatlaydi. Yuqoridagi misolda,
 variant tanlanganda, `{ number: 123 }` obyekt literalining qiymatiga tenglanadi.
 
-## O'zgartiruvchilar (Modifiers)
+## O'zgartiruvchilar - Modifikatorlar (Modifiers)
 
 ### `.lazy`
 
-Dastlabki holatda (by default), `v-model` har bir `input` hodisasidan so'ng inputni ma'lumotlar bilan sinxronlashtiradi ([yuqorida ta'kidlanganidek](#vmodel-ime-tip) IME qurilmasi bundan mustasno). Sinxronlash uchun, `change` hodisalaridan keyin, uning o'rniga `lazy` o'zgartiruvchisini qo'shishingiz mumkin:
+Dastlabki holatda (by default), `v-model` har bir `input` hodisasidan so'ng inputni ma'lumotlar bilan sinxronlashtiradi ([yuqorida ta'kidlanganidek](#vmodel-ime-tip) IME qurilmasi bundan mustasno). Sinxronlash uchun, `change` hodisalaridan keyin, uning o'rniga `lazy` o'zgartiruvchisini - modifikatorini (modifier) qo'shishingiz mumkin:
 
 ```vue-html
 <!-- synced after "change" instead of "input" -->
@@ -441,7 +439,7 @@ Dastlabki holatda (by default), `v-model` har bir `input` hodisasidan so'ng inpu
 ### `.number`
 
 Siz foydalanuvchi kiritgan ma'lumot avtomatik ravishda raqam sifatida yozilishini xohlasangiz,  
-`input`larni boshqaradigan `v-model`ingizga `number` o'zgartiruvchisini qo'shishingiz mumkin:
+`input`larni boshqaradigan `v-model`ingizga `number` o'zgartiruvchisini - modifikatorini qo'shishingiz mumkin:
 
 ```vue-html
 <input v-model.number="age" />
@@ -453,7 +451,7 @@ Agar input `type="number"` bo'lsa, unda `number` o'zgartiruvchisi avtomatik tarz
 
 ### `.trim`
 
-Siz foydalanuvchi kiritgan ma'lumotdan bo'sh joyni avtomatik tarzda kesib - olib tashlanishini xohlasangiz, `input`larni boshqaradigan `v-model`ingizga `trim` o'zgartiruvchisini qo'shishingiz mumkin:
+Siz foydalanuvchi kiritgan ma'lumotdan bo'sh joyni avtomatik tarzda kesib - olib tashlanishini xohlasangiz, `input`larni boshqaradigan `v-model`ingizga `trim` o'zgartiruvchisini - modifikatorini qo'shishingiz mumkin:
 
 ```vue-html
 <input v-model.trim="msg" />
