@@ -1,4 +1,4 @@
-# Computed Properties
+# Computed Properties (Oldindan hisoblangan funksiyalar)
 
 <div class="options-api">
   <VueSchoolLink href="https://vueschool.io/lessons/computed-properties-in-vue-3" title="Free Vue.js Computed Properties Lesson"/>
@@ -8,9 +8,9 @@
   <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-computed-properties-in-vue-with-the-composition-api" title="Free Vue.js Computed Properties Lesson"/>
 </div>
 
-## Basic Example
+## Sodda misol
 
-In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain. For example, if we have an object with a nested array:
+Template ifodalari ("moustache" sintaksisi ichida yoziladigan ifoda (`expression`)) juda qulay, lekin ular sodda operatsiyalar bajarishda e'tiborga olinadi. `Template`laringizga juda ko'p mantiq kiritish ularni noqulay holatga keltiradi va saqlashni qiyinlashtiradi. Misol uchun, bizda ichma-ich joylashgan arrayga ega obyekt bo'lsa:
 
 <div class="options-api">
 
@@ -47,16 +47,16 @@ const author = reactive({
 
 </div>
 
-And we want to display different messages depending on if `author` already has some books or not:
+Va biz, `muallif`da allaqachon bir nechta kitoblar borligi yoki umuman yo'qligiga qarab, turli xil xabarlarni sahifada ko'rsatishni xohlaymiz:
 
 ```vue-html
-<p>Has published books:</p>
+<p>Chop etilgan kitoblar:</p>
 <span>{{ author.books.length > 0 ? 'Yes' : 'No' }}</span>
 ```
 
-At this point, the template is getting a bit cluttered. We have to look at it for a second before realizing that it performs a calculation depending on `author.books`. More importantly, we probably don't want to repeat ourselves if we need to include this calculation in the template more than once.
+Bu holatda, `template` tartibsiz bo'lishni boshlaydi. `author.books` bilan bog'liq hisoblash ishga tushishidan oldin, Biz bir oz muddatga unga nazar solishimiz kerak. Eng muhimi, agar `template` ichida bu hisoblashni bir martadan ortiq ishlatish zarur bo'lsa, O'zimizni qaytarishni xohlamasligimiz mumkin.
 
-That's why for complex logic that includes reactive data, it is recommended to use a **computed property**. Here's the same example, refactored:
+Reaktiv ma'lumotlar murakkab bo'lgan mantiqni o'z ichiga oladi, shuning uchun **computed property**dan foydalanish tavsiya qilinadi. Bu yerda ham bir xil misol, tartibga solingan:
 
 <div class="options-api">
 
@@ -85,19 +85,19 @@ export default {
 ```
 
 ```vue-html
-<p>Has published books:</p>
+<p>Chop etilgan kitoblar:</p>
 <span>{{ publishedBooksMessage }}</span>
 ```
 
 [Try it in the Playground](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZGF0YSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgYXV0aG9yOiB7XG4gICAgICAgIG5hbWU6ICdKb2huIERvZScsXG4gICAgICAgIGJvb2tzOiBbXG4gICAgICAgICAgJ1Z1ZSAyIC0gQWR2YW5jZWQgR3VpZGUnLFxuICAgICAgICAgICdWdWUgMyAtIEJhc2ljIEd1aWRlJyxcbiAgICAgICAgICAnVnVlIDQgLSBUaGUgTXlzdGVyeSdcbiAgICAgICAgXVxuICAgICAgfVxuICAgIH1cbiAgfSxcbiAgY29tcHV0ZWQ6IHtcbiAgICBwdWJsaXNoZWRCb29rc01lc3NhZ2UoKSB7XG4gICAgICByZXR1cm4gdGhpcy5hdXRob3IuYm9va3MubGVuZ3RoID4gMCA/ICdZZXMnIDogJ05vJ1xuICAgIH1cbiAgfVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPHA+SGFzIHB1Ymxpc2hlZCBib29rczo8L3A+XG4gIDxzcGFuPnt7IGF1dGhvci5ib29rcy5sZW5ndGggPiAwID8gJ1llcycgOiAnTm8nIH19PC9zcGFuPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59In0=)
 
-Here we have declared a computed property `publishedBooksMessage`.
+Bu yerda biz `publishedBooksMessage` nomli computed property e'lon qildik.
 
-Try to change the value of the `books` array in the application `data` and you will see how `publishedBooksMessage` is changing accordingly.
+Ilova ichidagi `books` arrayining qiymatini o'zgartirishga harakat qilib ko'ring va  `publishedBooksMessage`ning unga mos ravishda o'zgarayotganini ko'rasiz.
 
-You can data-bind to computed properties in templates just like a normal property. Vue is aware that `this.publishedBooksMessage` depends on `this.author.books`, so it will update any bindings that depend on `this.publishedBooksMessage` when `this.author.books` changes.
+Normal `property`dek, `template`lar ichidagi `computed properties`ga ma'lumotlarni bog'lashingiz mumkin. Vue `this.publishedBooksMessage` `this.author.books`ga bog'liqligidan xabardor, shuning uchun u `this.author.books` o'zgarganda `this.publishedBooksMessage` bilan bog'liq bo'lgan har qanday bog'lanishlarni (bindings) yangilaydi.
 
-See also: [Typing Computed Properties](/guide/typescript/options-api.html#typing-computed-properties) <sup class="vt-badge ts" />
+Buni ham ko'ring: [Typing Computed Properties](/guide/typescript/options-api.html#typing-computed-properties) <sup class="vt-badge ts" />
 
 </div>
 
@@ -123,24 +123,24 @@ const publishedBooksMessage = computed(() => {
 </script>
 
 <template>
-  <p>Has published books:</p>
+  <p>Chop etilgan kitoblar:</p>
   <span>{{ publishedBooksMessage }}</span>
 </template>
 ```
 
 [Try it in the Playground](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlYWN0aXZlLCBjb21wdXRlZCB9IGZyb20gJ3Z1ZSdcblxuY29uc3QgYXV0aG9yID0gcmVhY3RpdmUoe1xuICBuYW1lOiAnSm9obiBEb2UnLFxuICBib29rczogW1xuICAgICdWdWUgMiAtIEFkdmFuY2VkIEd1aWRlJyxcbiAgICAnVnVlIDMgLSBCYXNpYyBHdWlkZScsXG4gICAgJ1Z1ZSA0IC0gVGhlIE15c3RlcnknXG4gIF1cbn0pXG5cbi8vIGEgY29tcHV0ZWQgcmVmXG5jb25zdCBwdWJsaXNoZWRCb29rc01lc3NhZ2UgPSBjb21wdXRlZCgoKSA9PiB7XG4gIHJldHVybiBhdXRob3IuYm9va3MubGVuZ3RoID4gMCA/ICdZZXMnIDogJ05vJ1xufSlcbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxwPkhhcyBwdWJsaXNoZWQgYm9va3M6PC9wPlxuICA8c3Bhbj57eyBwdWJsaXNoZWRCb29rc01lc3NhZ2UgfX08L3NwYW4+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
 
-Here we have declared a computed property `publishedBooksMessage`. The `computed()` function expects to be passed a getter function, and the returned value is a **computed ref**. Similar to normal refs, you can access the computed result as `publishedBooksMessage.value`. Computed refs are also auto-unwrapped in templates so you can reference them without `.value` in template expressions.
+Bu yerda biz `publishedBooksMessage` nomli computed property e'lon qildik. `computed()` funksiyasi qabul qiluvchi funksiyani (getter function) uzatib yuborilishini va qaytgan qiymat **computed ref** bo'lishini kutadi. Normal reflarga o'xshab, siz  `publishedBooksMessage.value`ga bog'langaningiz kabi hisoblangan natijaga (`computed result`ga) ham bog'lana olasiz. `Computed ref`lar ham templatelar ichida avtomatik ochilgan bo'ladi (ya'ni `Proxy` obyektiga o'ralmaydi), shuning uchun siz temlate ifodalar ichida ulardan `.value`siz ham ma'lumot qabul qila olasiz.
 
-A computed property automatically tracks its reactive dependencies. Vue is aware that the computation of `publishedBooksMessage` depends on `author.books`, so it will update any bindings that depend on `publishedBooksMessage` when `author.books` changes.
+`Computed property` avtomatik tarzda o'zining `reactive dependency`larini kuzatib boradi. `Vue` `publishedBooksMessage`ning hisoblanishi `author.books` bilan bog'liqligidan xabardor, shuning uchun u `author.books` o'zgarganda, `publishedBooksMessage` bilan bog'liq bo'lgan har qanday bog'lanishlarni (bindings) yangilaydi.
 
-See also: [Typing Computed](/guide/typescript/composition-api.html#typing-computed) <sup class="vt-badge ts" />
+Buni ham ko'ring: [Typing Computed](/guide/typescript/composition-api.html#typing-computed) <sup class="vt-badge ts" />
 
 </div>
 
 ## Computed Caching vs Methods
 
-You may have noticed we can achieve the same result by invoking a method in the expression:
+E'tibor bergan bo'lsangiz, biz metodni, ifoda (expression) ichida chaqirish orqali ham bir xil natijaga erisha olamiz:
 
 ```vue-html
 <p>{{ calculateBooksMessage() }}</p>
@@ -170,9 +170,10 @@ function calculateBooksMessage() {
 
 </div>
 
-Instead of a computed property, we can define the same function as a method. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on their reactive dependencies.** A computed property will only re-evaluate when some of its reactive dependencies have changed. This means as long as `author.books` has not changed, multiple access to `publishedBooksMessage` will immediately return the previously computed result without having to run the getter function again.
+`Computed property` o'rniga, xuddi shunday funksiyani metod sifatida ko'rsatishimiz mumkin. So'nggi natija uchun, ikkala yondashuvlar haqiqatan ham bir xil. Ammo, farq shundaki **computed propertylar o'zining reactive dependencylariga asosan keshlanadi.** Computed property uning ba'zi reactive dependencylari o'zgargandagina qayta baholanadi. Bu shuni anglatadiki, `author.books` o'zgarmagunicha,
+`publishedBooksMessage`ga bo'lgan bir nechta ulanishlar `getter` funksiyasini ishga tushirmasdan darhol oldingi hisoblangan natijani qaytaradi.
 
-This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
+Bu kelayotgan `computed property` hech qachon yangilanmasligini ham anglatadi, chunki `Date.now()` reactive dependency emas:
 
 <div class="options-api">
 
@@ -194,13 +195,15 @@ const now = computed(() => Date.now())
 
 </div>
 
-In comparison, a method invocation will **always** run the function whenever a re-render happens.
+Taqqoslanganda, qayta renderlash sodir bo'lganda metodni chaqirish, **har doim** funksiyani ishga tushiradi.
 
-Why do we need caching? Imagine we have an expensive computed property `list`, which requires looping through a huge array and doing a lot of computations. Then we may have other computed properties that in turn depend on `list`. Without caching, we would be executing `list`’s getter many more times than necessary! In cases where you do not want caching, use a method call instead.
+Bizga keshlash nima uchun kerak? Tasavvur qiling, bizda `list` nomli qimmat computed property bor va u katta arrayni aylanib chiqishni (looping) hamda ko'plab hisoblashlar amalga oshirishni talab qiladi. Keyin bizda o'z navbatida `list`ga bog'liq boshqa computed propertylar bo'lishi mumkin. Keshlashsiz, `list`ning oluvchi funksiyasini (getter) keragidan ortiq darajada yaratayotgan bo'lardik! Keshlashni xohlamagan holatlaringizda, uning o'rniga metoddan foydalaning.
+
+Keyin bizda boshqa hisoblangan xususiyatlar bo'lishi mumkin, ular o'z navbatida "ro'yxat" ga bog'liq.
 
 ## Writable Computed
 
-Computed properties are by default getter-only. If you attempt to assign a new value to a computed property, you will receive a runtime warning. In the rare cases where you need a "writable" computed property, you can create one by providing both a getter and a setter:
+`Computed properties` dastlabki holatda faqat qabul qiluvchi hisoblanadi. Agar `computed property`ga yangi qiymat tayinlashga urinsangiz, ishga tushish vaqtida (runtime) ogohlantirish qabul qilib olasiz. Sizga "yoziladigan" `computed property` zarur bo'lgan kamdan-kam holatlarda, uni `getter` va `setter`ning ikkisi bilan ta'minlash orqali yaratishingiz mumkin:
 
 <div class="options-api">
 
@@ -228,7 +231,7 @@ export default {
 }
 ```
 
-Now when you run `this.fullName = 'John Doe'`, the setter will be invoked and `this.firstName` and `this.lastName` will be updated accordingly.
+Endi, qachonki `this.fullName = 'John Doe'`ni ishga tushirganingizda, `setter` chaqirilgan bo'ladi va `this.firstName` hamda `this.lastName` unga mos ravishda yangilanadi.
 
 </div>
 
@@ -255,16 +258,18 @@ const fullName = computed({
 </script>
 ```
 
-Now when you run `fullName.value = 'John Doe'`, the setter will be invoked and `firstName` and `lastName` will be updated accordingly.
+Endi, qachonki `fullName.value = 'John Doe'`,ni ishga tushirganingizda, `setter` chaqirilgan bo'ladi va `firstName` hamda `lastName` unga mos ravishda yangilanadi.
 
 </div>
 
 ## Best Practices
 
-### Getters should be side-effect free
+### Qabul qiluvchi (getters) metodlar nojo'ya ta'sirlarsiz bo'lishi kerak
 
-It is important to remember that computed getter functions should only perform pure computation and be free of side effects. For example, don't make async requests or mutate the DOM inside a computed getter! Think of a computed property as declaratively describing how to derive a value based on other values - its only responsibility should be computing and returning that value. Later in the guide we will discuss how we can perform side effects in reaction to state changes with [watchers](./watchers).
+Buni yodda saqlash muhimki, `computed getter` funksiyalari faqat sof hisoblashni amalga oshirishi va nojo'ya ta'sirlardan xoli bo'lishi kerak. Misol uchun, asinxron so'rovlar qilmang yoki `computed getter` ichida DOMni o'zgartirmang! `Computed property`ni deklarativ tarzda boshqa qiymatlarga asoslangan qiymatni qanday olish kerakligini tasavvur qiling - uning yagona mas'uliyati bu qiymatni hisoblash va qaytarish bo'lishi kerak. Keyinchalik qo'llanmada biz [kuzatuchilar](./watchers) bilan holat o'zgarishiga tashqi tomondan qanday ta'sir qilishimiz mumkinligini muhokama qilamiz.
 
-### Avoid mutating computed value
+### Hisoblagan qiymatni o'zgartirishdan saqlaning
+
+`Computed property`dan qaytarilgan qiymat olingan holat hisoblanadi. Buni vaqtinchalik surat sifatida tasavvur qiling - har safar manba holati o'zgarganda, yangi surat yaratiladi. Suratni o'zgartirish ma'nosiz, shuning uchun hisoblangan qaytuvchi qiymat faqat o‘qiladigan (read-only) deb hisoblanishi va hech qachon o'zgarmasligi kerak – buning o‘rniga yangi hisob-kitoblarni ishga tushirish uchun unga bog‘liq bo‘lgan manba holatini yangilang.
 
 The returned value from a computed property is derived state. Think of it as a temporary snapshot - every time the source state changes, a new snapshot is created. It does not make sense to mutate a snapshot, so a computed return value should be treated as read-only and never be mutated - instead, update the source state it depends on to trigger new computations.
