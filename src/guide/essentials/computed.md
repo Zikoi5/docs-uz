@@ -271,5 +271,3 @@ Buni yodda saqlash muhimki, `computed getter` funksiyalari faqat sof hisoblashni
 ### Hisoblagan qiymatni o'zgartirishdan saqlaning
 
 `Computed property`dan qaytarilgan qiymat olingan holat hisoblanadi. Buni vaqtinchalik surat sifatida tasavvur qiling - har safar manba holati o'zgarganda, yangi surat yaratiladi. Suratni o'zgartirish ma'nosiz, shuning uchun hisoblangan qaytuvchi qiymat faqat o‘qiladigan (read-only) deb hisoblanishi va hech qachon o'zgarmasligi kerak – buning o‘rniga yangi hisob-kitoblarni ishga tushirish uchun unga bog‘liq bo‘lgan manba holatini yangilang.
-
-The returned value from a computed property is derived state. Think of it as a temporary snapshot - every time the source state changes, a new snapshot is created. It does not make sense to mutate a snapshot, so a computed return value should be treated as read-only and never be mutated - instead, update the source state it depends on to trigger new computations.
