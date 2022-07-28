@@ -1,24 +1,23 @@
-# Async Components
+# Asinxron komponentlar
 
-## Basic Usage
+## Asosiy foydalanish
 
-In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's needed. To make that possible, Vue has a [`defineAsyncComponent`](/api/general.html#defineasynccomponent) function:
-
+Katta ilovalarda ilovani kichikroq qismlarga ajratishimiz va serverdan komponentni faqat kerak bo'lganda yuklashimiz kerak bo'lishi mumkin. Buni amalga oshirish uchun Vue [`defineAsyncComponent`](/api/general.html#defineasynccomponent) funksiyasi mavjud:
 ```js
 import { defineAsyncComponent } from 'vue'
 
 const AsyncComp = defineAsyncComponent(() => {
   return new Promise((resolve, reject) => {
-    // ...load component from server
-    resolve(/* loaded component */)
+    // ...komponentni serverdan yuklash
+    resolve(/* yuklangan komponent */)
   })
 })
-// ... use `AsyncComp` like a normal component
+// ... `AsyncComp` dan oddiy komponent kabi foydalaning
 ```
 
-As you can see, `defineAsyncComponent` accepts a loader function that returns a Promise. The Promise's `resolve` callback should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed.
+Ko'rib turganingizdek, `defineAsyncComponent` Promise qaytaradigan yuklash funksiyasini qabul qiladi. Komponent taʼrifini serverdan olganingizdan soʻng, `Promise` ning `resolve` qayta qoʻngʻiroqlari chaqirilishi kerak. Shuningdek , yuklamaning bajarilmaganligini bildirish uchun `reject(reason)` ga qo'ng'iroq qilishingiz mumkin .
 
-[ES module dynamic import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) also returns a Promise, so most of the time we will use it in combination with `defineAsyncComponent`. Bundlers like Vite and webpack also support the syntax, so we can use it to import Vue SFCs:
+[ES modulining dinamik importi](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) ham `Promise` qaytaradi, shuning uchun ko'pincha biz uni `defineAsyncComponent` bilan birgalikda ishlatamiz . Vite va webpack kabi bundler'lar ham sintaksisni qo'llab-quvvatlaydi, shuning uchun biz Vue SFC-larini import qilish uchun foydalanishimiz mumkin:
 
 ```js
 import { defineAsyncComponent } from 'vue'
@@ -28,11 +27,11 @@ const AsyncComp = defineAsyncComponent(() =>
 )
 ```
 
-The resulting `AsyncComp` is a wrapper component that only calls the loader function when it is actually rendered on the page. In addition, it will pass along any props to the inner component, so you can use the async wrapper to seamlessly replace the original component while achieving lazy loading.
+Natijada `AsyncComp` faqat sahifada ko'rsatilganda yuklovchi funktsiyasini chaqiradigan o'rash komponenti paydo bo'ladi. Bundan tashqari, u har qanday rekvizitlar bo'ylab ichki komponentga o'tadi, shuning uchun siz dangasa yuklashga erishib, asl komponentni muammosiz almashtirish uchun asinxron qoplamadan foydalanishingiz mumkin.
 
 <div class="options-api">
 
-You can also use `defineAsyncComponent` when [registering a component locally](/guide/components/registration.html#local-registration):
+Shuningdek siz komponentni [mahalliy sifatida ro'yxatdan o'tkazishda](/guide/components/registration.html#local-registration) `defineAsyncComponent` ham foydalanishingiz mumkin :
 
 ```js
 import { defineAsyncComponent } from 'vue'
@@ -49,32 +48,32 @@ export default {
 
 </div>
 
-## Loading and Error States
+## Yuklash va xato holatlari
 
 Asynchronous operations inevitably involve loading and error states - `defineAsyncComponent()` supports handling these states via advanced options:
 
 ```js
 const AsyncComp = defineAsyncComponent({
-  // the loader function
+  // yuklovchi funksiyasi
   loader: () => import('./Foo.vue'),
 
-  // A component to use while the async component is loading
+  // Asinxron komponent yuklanayotganda foydalanish uchun komponent
   loadingComponent: LoadingComponent,
-  // Delay before showing the loading component. Default: 200ms.
+  // Yuklash komponentini ko'rsatishdan oldin kechikish. Standart: 200ms.
   delay: 200,
 
-  // A component to use if the load fails
+  // Yuklash bajarilmasa, foydalanish uchun komponent
   errorComponent: ErrorComponent,
-  // The error component will be displayed if a timeout is
-  // provided and exceeded. Default: Infinity.
+  // Vaqt tugashi bilan xato komponenti ko'rsatiladi
+  // berilgan va oshib ketgan. Default: Infinity.
   timeout: 3000
 })
 ```
 
-If a loading component is provided, it will be displayed first while the inner component is being loaded. There is a default 200ms delay before the loading component is shown - this is because on fast networks, an instant loading state may get replaced too fast and end up looking like a flicker.
+Agar yuklash komponenti taqdim etilgan bo'lsa, u birinchi navbatda ichki komponent yuklanayotganda ko'rsatiladi. Yuklash komponenti ko'rsatilishidan oldin sukut bo'yicha 200 ms kechikish mavjud - bu tezkor tarmoqlarda tezkor yuklanish holati juda tez o'zgarishi va miltillash kabi ko'rinishi mumkin.
 
-If an error component is provided, it will be displayed when the Promise returned by the loader function is rejected. You can also specify a timeout to show the error component when the request is taking too long.
+Agar xato komponenti taqdim etilsa, u yuklovchi funksiyasi tomonidan qaytarilgan Promise rad etilganda ko'rsatiladi. Shuningdek, so'rov juda uzoq davom etsa, xato komponentini ko'rsatish uchun kutish vaqtini belgilashingiz mumkin.
 
-## Using with Suspense
+## Suspense bilan foydalanish
 
-Async components can be used with the `<Suspense>` built-in component. The interaction between `<Suspense>` and async components are documented in the [dedicated chapter for `<Suspense>`](/guide/built-ins/suspense.html).
+Async komponentlari o'rnatilgan komponent bilan `<Suspense>` ishlatilishi mumkin. `<Suspense>` va async komponentlari o'rtasidagi o'zaro ta'sir [`<Suspense>` uchun maxsus bobda](/guide/built-ins/suspense.html) hujjatlashtirilgan.
