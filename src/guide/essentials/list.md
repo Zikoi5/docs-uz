@@ -1,4 +1,4 @@
-# List Rendering
+# List Rendering (Ro'yxatni sahifada ko'rsatish)
 
 <div class="options-api">
   <VueSchoolLink href="https://vueschool.io/lessons/list-rendering-in-vue-3" title="Free Vue.js List Rendering Lesson"/>
@@ -10,7 +10,7 @@
 
 ## `v-for`
 
-We can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an **alias** for the array element being iterated on:
+Biz `v-for` ko'rsatuvchisini arrayga asoslangan holda elementlarning ro'yxatini sahifada ko'rsatish uchun ishlatishimiz mumkin. `items` array ma'lumotlarining manbasi va `item` bo'lsa takrorlanadigan array elementi uchun **taxallus** bo'lsa, `v-for` ko'rsatuvchisi `item in items` ko'rinishidagi maxsus sintaksisni talab qiladi:
 
 <div class="composition-api">
 
@@ -38,7 +38,7 @@ data() {
 </li>
 ```
 
-Inside the `v-for` scope, template expressions have access to all parent scope properties. In addition, `v-for` also supports an optional second alias for the index of the current item:
+`v-for` ichida, template iboralar ota qamrovining (scope) xususiyatlariga bog'lana oladi. Bundan tashqari, `v-for` joriy element indeksi uchun ixtiyoriy ikkinchi taxallusni ham qo'llab-quvvatlaydi:
 
 <div class="composition-api">
 
@@ -88,7 +88,7 @@ const items = [{ message: 'Foo' }, { message: 'Bar' }]
 
 </div>
 
-The variable scoping of `v-for` is similar to the following JavaScript:
+`v-for` o'zgaruvchisining qamrovi (scope) quyidagi JavaScriptga o'xshaydi:
 
 ```js
 const parentMessage = 'Parent'
@@ -97,13 +97,12 @@ const items = [
 ]
 
 items.forEach((item, index) => {
-  // has access to outer scope `parentMessage`
-  // but `item` and `index` are only available in here
+  // tashqi skopdagi `parentMessage`ga bog'lana oladi
+  // lekin `item` va `index`lar faqat shu yerdagina mavjud
   console.log(parentMessage, item.message, index)
 })
 ```
-
-Notice how the `v-for` value matches the function signature of the `forEach` callback. In fact, you can use destructuring on the `v-for` item alias similar to destructuring function arguments:
+`v-for`ning qiymati `forEach` callback funksiyasiga qanday mos kelishiga e'tibor bering. Aslida, xuddi funksiya argumentlarini destructuring qilishga o'xshab, `v-for` elementi taxallusi ustida **destructuring**dan (`destructuring` - bu arraylardagi qiymatlarni yoki obyektlardagi xususiyatlarni alohida o'zgaruvchilarga ochish imkonini beruvchi JavaScript ifodasi) foydalanishingiz mumkin:
 
 ```vue-html
 <li v-for="{ message } in items">
@@ -116,7 +115,7 @@ Notice how the `v-for` value matches the function signature of the `forEach` cal
 </li>
 ```
 
-For nested `v-for`, scoping also works similar to nested functions. Each `v-for` scope has access to parent scopes:
+Ichma-ich joylashgan `v-for` uchun, o'rab turish (scoping) ham ichma-ich bo'lgan funksiyalarga o'xshab ishlaydi. Har bir `v-for` qamrovida otaning qamroviga (scope) bo'glanish - kirish huquqiga ega:
 
 ```vue-html
 <li v-for="item in items">
@@ -126,15 +125,15 @@ For nested `v-for`, scoping also works similar to nested functions. Each `v-for`
 </li>
 ```
 
-You can also use `of` as the delimiter instead of `in`, so that it is closer to JavaScript's syntax for iterators:
+Shuningdek, takrorlanuvchilar uchun JavaScriptning sintaksisiga yaqinroq bo'lishi uchun `in` o'rniga `of` dan foydalanishingiz mumkin:
 
 ```vue-html
 <div v-for="item of items"></div>
 ```
 
-## `v-for` with an Object
+## `v-for`ning Obyekt bilan ishlatilishi
 
-You can also use `v-for` to iterate through the properties of an object.
+`v-for` obyektning xususiyatlari orqali aylanib chiqish uchun foydalanishingiz ham mumkin:
 
 <div class="composition-api">
 
@@ -171,15 +170,14 @@ data() {
 </ul>
 ```
 
-You can also provide a second alias for the property's name (a.k.a. key):
+Xususiyat (property) nomini ikkinchi taxallus (alias) bilan ta'minlash mumkin (a.k.a key):
 
 ```vue-html
 <li v-for="(value, key) in myObject">
   {{ key }}: {{ value }}
 </li>
 ```
-
-And another for the index:
+Va boshqa indeks uchun:
 
 ```vue-html
 <li v-for="(value, key, index) in myObject">
@@ -198,23 +196,25 @@ And another for the index:
 
 </div>
 
-:::tip Note
-When iterating over an object, the order is based on the enumeration order of `Object.keys()`, which isn't guaranteed to be consistent across JavaScript engine implementations.
+:::tip Yodda tuting!
+
+Obyektni aylanib chiqayotganda, tartib `Object.keys()`ning ro'yxatga olishdagi tartibiga asoslanadi, bu JavaScript dvigateli ilovalarida izchil bo'lishi kafolatlanmaydi.
 :::
 
-## `v-for` with a Range
+## `v-for` bilan chegara
 
-`v-for` can also take an integer. In this case it will repeat the template that many times, based on a range of `1...n`.
+`v-for` butun sonni ham qabul qiladi. Bu holatda u `1...n`ning chegarasiga asoslanib, `template`ni ko'p marta takrorlaydi.
 
 ```vue-html
 <span v-for="n in 10">{{ n }}</span>
 ```
 
-Note here `n` starts with an initial value of `1` instead of `0`.
+Yodda tuting, bu yerda `n`ning boshlang'ich qiymati `0` o'rniga `1` bilan boshlanadi.
 
-## `v-for` on `<template>`
+## `<template>`da `v-for`
 
-Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
+
+`v-if` shabloniga o'xshab, bir nechta elementlar blokini ko'rsatish uchun `v-for` bilan `<template>` tegidan ham foydalanishingiz mumkin. Masalan:
 
 ```vue-html
 <ul>
@@ -225,25 +225,25 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 </ul>
 ```
 
-## `v-for` with `v-if`
+## `v-if` bilan `v-for`ning ishlatilishi
 
-:::warning Note
-It's **not** recommended to use `v-if` and `v-for` on the same element due to implicit precedence. Refer to [style guide](/style-guide/rules-essential.html#avoid-v-if-with-v-for) for details.
+:::warning Yodda tuting!
+
+`v-if` va `v-for`ni yashirin ustunlik tufayli bir element ichida ishlatish **tavsiya etilmaydi**. Ba'tafsil ma'lumot olish uchun [style guide](/style-guide/rules-essential.html#avoid-v-if-with-v-for)ga murojaat qiling.
 :::
 
-When they exist on the same node, `v-if` has a higher priority than `v-for`. That means the `v-if` condition will not have access to variables from the scope of the `v-for`:
+Qachonki ular bir elementda mavjud bo'lsa, `v-if`ning ustuvorligi `v-for`nikiga qaraganda balandroq bo'ladi. Bu shuni anglatadiki, `v-if` ko'rsatuchisi `v-for` `scope`ining o'zgaruvchilariga bog'lana olmaydi:
 
 ```vue-html
 <!--
-This will throw an error because property "todo"
-is not defined on instance.
+Bu yerda "todo" xususiyati komponent namunasida topilmagani uchun xatolik yuz beradi.
 -->
 <li v-for="todo in todos" v-if="!todo.isComplete">
   {{ todo.name }}
 </li>
 ```
 
-This can be fixed by moving `v-for` to a wrapping `<template>` tag (which is also more explicit):
+Bu `v-for` ni, ko'zga ko'rinmas qatlam sifatida xizmat qiluvchi `<template>` tegi ichiga ko'chirish bilan to'g'rilanishi mumkin:
 
 ```vue-html
 <template v-for="todo in todos">
@@ -253,13 +253,13 @@ This can be fixed by moving `v-for` to a wrapping `<template>` tag (which is als
 </template>
 ```
 
-## Maintaining State with `key`
+## Holatni `key` bilan saqlab turish
 
-When Vue is updating a list of elements rendered with `v-for`, by default it uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will patch each element in-place and make sure it reflects what should be rendered at that particular index.
+Vue `v-for` bilan ko'rsatilgan elementlar ro'yxatini yangilayotganda, doimiy holat (default) bo'yicha u "in-place patch (joyida yamash)" strategiyasidan foydalanadi. Agar ma'lumotlar elementlarining tartibi o'zgargan bo'lsa, DOM elementlarini, elementlarning tartibiga mos ravishda siljitish o'rniga, Vue har bir elementni joyiga qo'yadi va u o'sha indeksda ko'rsatilishi kerak bo'lgan narsani aks ettiradi.
 
-This default mode is efficient, but **only suitable when your list render output does not rely on child component state or temporary DOM state (e.g. form input values)**.
+Bu doimiy holat samarali, lekin **faqat ro'yxatni ko'rsatish chiqishi, bola komponent holatiga yoki vaqtinchalik DOM holatiga (masalan, form input qiymatlari) tayanmasagina mos keladi**.
 
-To give Vue a hint so that it can track each node's identity, and thus reuse and reorder existing elements, you need to provide a unique `key` attribute for each item:
+`Vue`ga har bir elementning identifikatorini kuzatishi va shu tariqa mavjud elementlarni qayta ishlatishi va tartiblashi uchun yo'nalish-yordam berish uchun har bir element uchun noyob `key` atributini ta'minlashingiz kerak:
 
 ```vue-html
 <div v-for="item in items" :key="item.id">
@@ -267,7 +267,7 @@ To give Vue a hint so that it can track each node's identity, and thus reuse and
 </div>
 ```
 
-When using `<template v-for>`, the `key` should be placed on the `<template>` container:
+`<template v-for>`dan foydalanayotganda, `key` `template` konteynerida joylashgan bo'lishi kerak:
 
 ```vue-html
 <template v-for="todo in todos" :key="todo.name">
@@ -275,25 +275,25 @@ When using `<template v-for>`, the `key` should be placed on the `<template>` co
 </template>
 ```
 
-:::tip Note
-`key` here is a special attribute being bound with `v-bind`. It should not be confused with the property key variable when [using `v-for` with an object](#v-for-with-an-object).
+:::tip Yodda tuting!
+Bu yerda `key` maxsus attribut bo'lgan `v-bind` bilan bog'langan bo'ladi. [`v-for` obyekt bilan ishlatilayotganda](#v-for-with-an-object) `key` o'zgaruvchisi bilan chalkashtirilmasligi kerak.
 :::
 
-[It is recommended](/style-guide/rules-essential.html#use-keyed-v-for) to provide a `key` attribute with `v-for` whenever possible, unless the iterated DOM content is simple (i.e. contains no components or stateful DOM elements), or you are intentionally relying on the default behavior for performance gains.
+DOMning takrorlangan (iterated) kontent oddiy bo'lmasa (masalan, hech qanday komponent yoki statistik DOM elementlarini o'z ichiga olmagan bo'lsa) yoki unumdorlikni oshirish uchun ataylab standart xatti-harakatlarga tayansangiz, imkoni boricha `v-for`ni `key` attributi bilan ta'minlash [tavsiya etiladi](/style-guide/rules-essential.html#use-keyed-v-for).
 
-The `key` binding expects primitive values - i.e. strings and numbers. Do not use objects as `v-for` keys. For detailed usage of the `key` attribute, please see the [`key` API documentation](/api/built-in-special-attributes.html#key).
+`key` o'zgarmas qiymatlariga bog'lanishni kutadi - masalan, `string` va `raqamlar`. Obyektlarni `v-for`ning `key`i sifatida ishlatmang. `key` attributining foydalanilishi haqidagi ba'tafsil ma'lumot uchun, iltimos [`key` API documentation](/api/built-in-special-attributes.html#key)ni ko'rib chiqing.
 
-## `v-for` with a Component
+## `v-for`ning Componentlarda ishlatilishi
 
-> This section assumes knowledge of [Components](/guide/essentials/component-basics). Feel free to skip it and come back later.
+> Bu bo'lim [Komponentlar](/guide/essentials/component-basics) haqidagi bilimlarni o'z ichiga oladi. O'tkazib yuborishingiz va keyinroq qaytishingiz mumkin.
 
-You can directly use `v-for` on a component, like any normal element (don't forget to provide a `key`):
+Komponentda `v-for`ni boshqa normal elementlarga o'xshab to'g'ridan-to'g'ri foydalanishingiz mumkin (`key` bilan ta'minlashni unutmang):
 
 ```vue-html
 <my-component v-for="item in items" :key="item.id"></my-component>
 ```
 
-However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
+Biroq, bu komponentga hech qanday ma'lumotni avtomatik ravishda uzatmaydi, chunki komponentlar o'zlarining izolyatsiyalangan doiralariga ega. Takrorlangan ma'lumotlarni komponentga o'tkazish uchun biz xususiyatlardan (props) ham foydalanishimiz kerak:
 
 ```vue-html
 <my-component
@@ -304,24 +304,24 @@ However, this won't automatically pass any data to the component, because compon
 ></my-component>
 ```
 
-The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
+Komponentga avtomatik ravishda `item` kiritilmasligining sababi shundaki, bu komponentni `v-for` qanday ishlashi bilan chambarchas bog'laydi. Uning ma'lumotlari qayerdan kelganligi aniq bo'lishi komponentni boshqa holatlarda qayta foydalanishga imkon beradi.
 
 <div class="composition-api">
 
-Check out [this example of a simple todo list](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiB9IGZyb20gJ3Z1ZSdcbmltcG9ydCBUb2RvSXRlbSBmcm9tICcuL1RvZG9JdGVtLnZ1ZSdcbiAgXG5jb25zdCBuZXdUb2RvVGV4dCA9IHJlZignJylcbmNvbnN0IHRvZG9zID0gcmVmKFtcbiAge1xuICAgIGlkOiAxLFxuICAgIHRpdGxlOiAnRG8gdGhlIGRpc2hlcydcbiAgfSxcbiAge1xuICAgIGlkOiAyLFxuICAgIHRpdGxlOiAnVGFrZSBvdXQgdGhlIHRyYXNoJ1xuICB9LFxuICB7XG4gICAgaWQ6IDMsXG4gICAgdGl0bGU6ICdNb3cgdGhlIGxhd24nXG4gIH1cbl0pXG5cbmxldCBuZXh0VG9kb0lkID0gNFxuXG5mdW5jdGlvbiBhZGROZXdUb2RvKCkge1xuICB0b2Rvcy52YWx1ZS5wdXNoKHtcbiAgICBpZDogbmV4dFRvZG9JZCsrLFxuICAgIHRpdGxlOiBuZXdUb2RvVGV4dC52YWx1ZVxuICB9KVxuICBuZXdUb2RvVGV4dC52YWx1ZSA9ICcnXG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuXHQ8Zm9ybSB2LW9uOnN1Ym1pdC5wcmV2ZW50PVwiYWRkTmV3VG9kb1wiPlxuICAgIDxsYWJlbCBmb3I9XCJuZXctdG9kb1wiPkFkZCBhIHRvZG88L2xhYmVsPlxuICAgIDxpbnB1dFxuICAgICAgdi1tb2RlbD1cIm5ld1RvZG9UZXh0XCJcbiAgICAgIGlkPVwibmV3LXRvZG9cIlxuICAgICAgcGxhY2Vob2xkZXI9XCJFLmcuIEZlZWQgdGhlIGNhdFwiXG4gICAgLz5cbiAgICA8YnV0dG9uPkFkZDwvYnV0dG9uPlxuICA8L2Zvcm0+XG4gIDx1bD5cbiAgICA8dG9kby1pdGVtXG4gICAgICB2LWZvcj1cIih0b2RvLCBpbmRleCkgaW4gdG9kb3NcIlxuICAgICAgOmtleT1cInRvZG8uaWRcIlxuICAgICAgOnRpdGxlPVwidG9kby50aXRsZVwiXG4gICAgICBAcmVtb3ZlPVwidG9kb3Muc3BsaWNlKGluZGV4LCAxKVwiXG4gICAgPjwvdG9kby1pdGVtPlxuICA8L3VsPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwiVG9kb0l0ZW0udnVlIjoiPHNjcmlwdCBzZXR1cD5cbmRlZmluZVByb3BzKFsndGl0bGUnXSlcbmRlZmluZUVtaXRzKFsncmVtb3ZlJ10pXG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8bGk+XG4gICAge3sgdGl0bGUgfX1cbiAgICA8YnV0dG9uIEBjbGljaz1cIiRlbWl0KCdyZW1vdmUnKVwiPlJlbW92ZTwvYnV0dG9uPlxuICA8L2xpPlxuPC90ZW1wbGF0ZT4ifQ==) to see how to render a list of components using `v-for`, passing different data to each instance.
+`v-for`ning Komponentlar ro'yxatini qanday qilib sahifada ko'rsatish va har bir komponent namunasiga turli xil ma'lumotlarni o'tkazishni bilish uchun tekshirib ko'ring [`Todo List`ning oddiy misoli](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiB9IGZyb20gJ3Z1ZSdcbmltcG9ydCBUb2RvSXRlbSBmcm9tICcuL1RvZG9JdGVtLnZ1ZSdcbiAgXG5jb25zdCBuZXdUb2RvVGV4dCA9IHJlZignJylcbmNvbnN0IHRvZG9zID0gcmVmKFtcbiAge1xuICAgIGlkOiAxLFxuICAgIHRpdGxlOiAnRG8gdGhlIGRpc2hlcydcbiAgfSxcbiAge1xuICAgIGlkOiAyLFxuICAgIHRpdGxlOiAnVGFrZSBvdXQgdGhlIHRyYXNoJ1xuICB9LFxuICB7XG4gICAgaWQ6IDMsXG4gICAgdGl0bGU6ICdNb3cgdGhlIGxhd24nXG4gIH1cbl0pXG5cbmxldCBuZXh0VG9kb0lkID0gNFxuXG5mdW5jdGlvbiBhZGROZXdUb2RvKCkge1xuICB0b2Rvcy52YWx1ZS5wdXNoKHtcbiAgICBpZDogbmV4dFRvZG9JZCsrLFxuICAgIHRpdGxlOiBuZXdUb2RvVGV4dC52YWx1ZVxuICB9KVxuICBuZXdUb2RvVGV4dC52YWx1ZSA9ICcnXG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuXHQ8Zm9ybSB2LW9uOnN1Ym1pdC5wcmV2ZW50PVwiYWRkTmV3VG9kb1wiPlxuICAgIDxsYWJlbCBmb3I9XCJuZXctdG9kb1wiPkFkZCBhIHRvZG88L2xhYmVsPlxuICAgIDxpbnB1dFxuICAgICAgdi1tb2RlbD1cIm5ld1RvZG9UZXh0XCJcbiAgICAgIGlkPVwibmV3LXRvZG9cIlxuICAgICAgcGxhY2Vob2xkZXI9XCJFLmcuIEZlZWQgdGhlIGNhdFwiXG4gICAgLz5cbiAgICA8YnV0dG9uPkFkZDwvYnV0dG9uPlxuICA8L2Zvcm0+XG4gIDx1bD5cbiAgICA8dG9kby1pdGVtXG4gICAgICB2LWZvcj1cIih0b2RvLCBpbmRleCkgaW4gdG9kb3NcIlxuICAgICAgOmtleT1cInRvZG8uaWRcIlxuICAgICAgOnRpdGxlPVwidG9kby50aXRsZVwiXG4gICAgICBAcmVtb3ZlPVwidG9kb3Muc3BsaWNlKGluZGV4LCAxKVwiXG4gICAgPjwvdG9kby1pdGVtPlxuICA8L3VsPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwiVG9kb0l0ZW0udnVlIjoiPHNjcmlwdCBzZXR1cD5cbmRlZmluZVByb3BzKFsndGl0bGUnXSlcbmRlZmluZUVtaXRzKFsncmVtb3ZlJ10pXG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8bGk+XG4gICAge3sgdGl0bGUgfX1cbiAgICA8YnV0dG9uIEBjbGljaz1cIiRlbWl0KCdyZW1vdmUnKVwiPlJlbW92ZTwvYnV0dG9uPlxuICA8L2xpPlxuPC90ZW1wbGF0ZT4ifQ==)
 
 </div>
 <div class="options-api">
 
-Check out [this example of a simple todo list](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmltcG9ydCBUb2RvSXRlbSBmcm9tICcuL1RvZG9JdGVtLnZ1ZSdcbiAgXG5leHBvcnQgZGVmYXVsdCB7XG4gIGNvbXBvbmVudHM6IHsgVG9kb0l0ZW0gfSxcbiAgZGF0YSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgbmV3VG9kb1RleHQ6ICcnLFxuICAgICAgdG9kb3M6IFtcbiAgICAgICAge1xuICAgICAgICAgIGlkOiAxLFxuICAgICAgICAgIHRpdGxlOiAnRG8gdGhlIGRpc2hlcydcbiAgICAgICAgfSxcbiAgICAgICAge1xuICAgICAgICAgIGlkOiAyLFxuICAgICAgICAgIHRpdGxlOiAnVGFrZSBvdXQgdGhlIHRyYXNoJ1xuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgaWQ6IDMsXG4gICAgICAgICAgdGl0bGU6ICdNb3cgdGhlIGxhd24nXG4gICAgICAgIH1cbiAgICAgIF0sXG4gICAgICBuZXh0VG9kb0lkOiA0XG4gICAgfVxuICB9LFxuICBtZXRob2RzOiB7XG4gICAgYWRkTmV3VG9kbygpIHtcbiAgICAgIHRoaXMudG9kb3MucHVzaCh7XG4gICAgICAgIGlkOiB0aGlzLm5leHRUb2RvSWQrKyxcbiAgICAgICAgdGl0bGU6IHRoaXMubmV3VG9kb1RleHRcbiAgICAgIH0pXG4gICAgICB0aGlzLm5ld1RvZG9UZXh0ID0gJydcbiAgICB9XG4gIH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG5cdDxmb3JtIHYtb246c3VibWl0LnByZXZlbnQ9XCJhZGROZXdUb2RvXCI+XG4gICAgPGxhYmVsIGZvcj1cIm5ldy10b2RvXCI+QWRkIGEgdG9kbzwvbGFiZWw+XG4gICAgPGlucHV0XG4gICAgICB2LW1vZGVsPVwibmV3VG9kb1RleHRcIlxuICAgICAgaWQ9XCJuZXctdG9kb1wiXG4gICAgICBwbGFjZWhvbGRlcj1cIkUuZy4gRmVlZCB0aGUgY2F0XCJcbiAgICAvPlxuICAgIDxidXR0b24+QWRkPC9idXR0b24+XG4gIDwvZm9ybT5cbiAgPHVsPlxuICAgIDx0b2RvLWl0ZW1cbiAgICAgIHYtZm9yPVwiKHRvZG8sIGluZGV4KSBpbiB0b2Rvc1wiXG4gICAgICA6a2V5PVwidG9kby5pZFwiXG4gICAgICA6dGl0bGU9XCJ0b2RvLnRpdGxlXCJcbiAgICAgIEByZW1vdmU9XCJ0b2Rvcy5zcGxpY2UoaW5kZXgsIDEpXCJcbiAgICA+PC90b2RvLWl0ZW0+XG4gIDwvdWw+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0iLCJUb2RvSXRlbS52dWUiOiI8c2NyaXB0PlxuZXhwb3J0IGRlZmF1bHQge1xuXHRwcm9wczogWyd0aXRsZSddLFxuICBlbWl0czogWydyZW1vdmUnXVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPGxpPlxuICAgIHt7IHRpdGxlIH19XG4gICAgPGJ1dHRvbiBAY2xpY2s9XCIkZW1pdCgncmVtb3ZlJylcIj5SZW1vdmU8L2J1dHRvbj5cbiAgPC9saT5cbjwvdGVtcGxhdGU+In0=) to see how to render a list of components using `v-for`, passing different data to each instance.
+`v-for`ning Komponentlar ro'yxatini qanday qilib sahifada ko'rsatish va har bir komponent namunasiga turli xil ma'lumotlarni o'tkazishni bilish uchun tekshirib ko'ring [`Todo List`ning oddiy misoli](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmltcG9ydCBUb2RvSXRlbSBmcm9tICcuL1RvZG9JdGVtLnZ1ZSdcbiAgXG5leHBvcnQgZGVmYXVsdCB7XG4gIGNvbXBvbmVudHM6IHsgVG9kb0l0ZW0gfSxcbiAgZGF0YSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgbmV3VG9kb1RleHQ6ICcnLFxuICAgICAgdG9kb3M6IFtcbiAgICAgICAge1xuICAgICAgICAgIGlkOiAxLFxuICAgICAgICAgIHRpdGxlOiAnRG8gdGhlIGRpc2hlcydcbiAgICAgICAgfSxcbiAgICAgICAge1xuICAgICAgICAgIGlkOiAyLFxuICAgICAgICAgIHRpdGxlOiAnVGFrZSBvdXQgdGhlIHRyYXNoJ1xuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgaWQ6IDMsXG4gICAgICAgICAgdGl0bGU6ICdNb3cgdGhlIGxhd24nXG4gICAgICAgIH1cbiAgICAgIF0sXG4gICAgICBuZXh0VG9kb0lkOiA0XG4gICAgfVxuICB9LFxuICBtZXRob2RzOiB7XG4gICAgYWRkTmV3VG9kbygpIHtcbiAgICAgIHRoaXMudG9kb3MucHVzaCh7XG4gICAgICAgIGlkOiB0aGlzLm5leHRUb2RvSWQrKyxcbiAgICAgICAgdGl0bGU6IHRoaXMubmV3VG9kb1RleHRcbiAgICAgIH0pXG4gICAgICB0aGlzLm5ld1RvZG9UZXh0ID0gJydcbiAgICB9XG4gIH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG5cdDxmb3JtIHYtb246c3VibWl0LnByZXZlbnQ9XCJhZGROZXdUb2RvXCI+XG4gICAgPGxhYmVsIGZvcj1cIm5ldy10b2RvXCI+QWRkIGEgdG9kbzwvbGFiZWw+XG4gICAgPGlucHV0XG4gICAgICB2LW1vZGVsPVwibmV3VG9kb1RleHRcIlxuICAgICAgaWQ9XCJuZXctdG9kb1wiXG4gICAgICBwbGFjZWhvbGRlcj1cIkUuZy4gRmVlZCB0aGUgY2F0XCJcbiAgICAvPlxuICAgIDxidXR0b24+QWRkPC9idXR0b24+XG4gIDwvZm9ybT5cbiAgPHVsPlxuICAgIDx0b2RvLWl0ZW1cbiAgICAgIHYtZm9yPVwiKHRvZG8sIGluZGV4KSBpbiB0b2Rvc1wiXG4gICAgICA6a2V5PVwidG9kby5pZFwiXG4gICAgICA6dGl0bGU9XCJ0b2RvLnRpdGxlXCJcbiAgICAgIEByZW1vdmU9XCJ0b2Rvcy5zcGxpY2UoaW5kZXgsIDEpXCJcbiAgICA+PC90b2RvLWl0ZW0+XG4gIDwvdWw+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0iLCJUb2RvSXRlbS52dWUiOiI8c2NyaXB0PlxuZXhwb3J0IGRlZmF1bHQge1xuXHRwcm9wczogWyd0aXRsZSddLFxuICBlbWl0czogWydyZW1vdmUnXVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPGxpPlxuICAgIHt7IHRpdGxlIH19XG4gICAgPGJ1dHRvbiBAY2xpY2s9XCIkZW1pdCgncmVtb3ZlJylcIj5SZW1vdmU8L2J1dHRvbj5cbiAgPC9saT5cbjwvdGVtcGxhdGU+In0=).
 
 </div>
 
-## Array Change Detection
+## Array O'zgarishini aniqlash
 
-### Mutation Methods
+### O'zgartiruvchi methodlar
 
-Vue wraps an observed array's mutation methods so they will also trigger view updates. The wrapped methods are:
+Vue kuzatilgan arrayning o'zgartiruvchi metodlarini o‘rab oladi, shuning uchun ular yangilanishlarini ham ishga tushiradi. O'ralgan metodlar quyidagilardir:
 
 - `push()`
 - `pop()`
@@ -331,9 +331,9 @@ Vue wraps an observed array's mutation methods so they will also trigger view up
 - `sort()`
 - `reverse()`
 
-### Replacing an Array
+### Arrayni almashtirish
 
-Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original array but **always return a new array**. When working with non-mutating methods, we should replace the old array with the new one:
+O'zgartiruvchi metodlar, nomidan ko'rinib turibdiki, ular chaqirilgan original arrayni o'zgartiradi. Taqqoslash uchun, o'zgartirmaydigan metodlar ham mavjud. Masalan, `filter()`, `concat()` va `slice()`, ular original arrayni o`zgartirmaydi, lekin **har doim yangi arrayni qaytaradi**. O'zgartirmaydigan metodlar bilan ishlashda biz eski arrayni yangisiga almashtirishimiz kerak:
 
 <div class="composition-api">
 
@@ -351,13 +351,13 @@ this.items = this.items.filter((item) => item.message.match(/Foo/))
 
 </div>
 
-You might think this will cause Vue to throw away the existing DOM and re-render the entire list - luckily, that is not the case. Vue implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
+Bu `Vue`ning, mavjud DOMni otib yuborishiga va butun ro'yxatni qayta ko'rsatishiga olib keladi deb o'ylashingiz mumkin - xayriyatki, unday emas. `Vue` DOM elementidan qayta foydalanishni maksimal darajada oshirish uchun ba'zi aqlli yechimlarni amalga oshiradi, shuning uchun arrayni, bir-biriga o'xshash obyektlarni o'z ichiga olgan boshqa array bilan almashtirish juda samarali operatsiya hisoblanadi.
 
-## Displaying Filtered/Sorted Results
+## Filtrlangan/Saralangan natijalarni ko'rsatish
 
-Sometimes we want to display a filtered or sorted version of an array without actually mutating or resetting the original data. In this case, you can create a computed property that returns the filtered or sorted array.
+Ba'zida biz arrayning, original ma'lumotlarni o'zgartirishsiz yoki qayta yozishsiz, filtrlangan yoki saralangan versiyasini ko'rsatishni xohlaymiz.
 
-For example:
+Misol uchun:
 
 <div class="composition-api">
 
@@ -391,7 +391,7 @@ computed: {
 <li v-for="n in evenNumbers">{{ n }}</li>
 ```
 
-In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can use a method:
+`Computed property` ishlatilishi mumkin bo'lmagan holatlarda (masalan, ichma-ich joylashgan `v-for` looplari ichida), metoddan foydalanishingiz mumkin:
 
 <div class="composition-api">
 
@@ -430,7 +430,7 @@ methods: {
 </ul>
 ```
 
-Be careful with `reverse()` and `sort()` in a computed property! These two methods will mutate the original array, which should be avoided in computed getters. Create a copy of the original array before calling these methods:
+`reverse()` va `sort()` metodlarini `Computed property` ichida ishlatishda ehtiyot bo'ling! Bu ikki metodlar original arrayni o'zgartirib yuboradi. Bu metodlarni chaqirishdan oldin, original arrayning nusxasini yaratib oling: 
 
 ```diff
 - return numbers.reverse()
